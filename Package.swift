@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 import PackageDescription
 
 // Version: 1.0.2504151 (Major.Minor.DateBuild format)
