@@ -1,0 +1,8 @@
+*.swift text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.xcframework.zip binary
+*.xcframework/** binary
+
+# Exclude documentation from language statistics
+Documentation/* linguist-documentation 
