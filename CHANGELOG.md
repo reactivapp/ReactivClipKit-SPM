@@ -1,22 +1,8 @@
 # Changelog
 
-All notable changes to the ReactivClipKit framework will be documented in this file.
+All notable changes to ReactivClipKit will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## 1.0.2504161 (2024-04-16)
 
-## [1.0.0] - YYYY-MM-DD
-
-### Added
-- Initial release of ReactivClipKit via Swift Package Manager
-- [Feature description]
-- [Feature description]
-
-### Fixed
-- [Bug description if applicable]
-
-### Changed
-- [Change description if applicable]
-
-### Removed
-- [Removal description if applicable] 
+### Released
+- Initial release of ReactivClipKit
