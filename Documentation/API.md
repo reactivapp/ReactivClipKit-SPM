@@ -7,8 +7,8 @@
 try ReactivClipInitialize(
     appIdentifier: String,          // Required: Your Reactiv App ID
     reactivEventsToken: String,     // Required: Your analytics token
-    firebaseSessionIDProvider: FirebaseSessionIDProvider? = nil,  // Optional: Firebase session callback
-    firebaseAppInstanceId: String? = nil,                        // Optional: Firebase instance ID
+    firebaseSessionIDProvider: FirebaseSessionIDProvider? = nil,  // Firebase session callback
+    firebaseAppInstanceId: String? = nil,                        // Firebase instance ID
     appStoreID: String,            // Required: App Store Connect ID
     parentBundleIdentifier: String  // Required: Parent app's bundle ID
 )
@@ -26,6 +26,14 @@ let isInitialized: Bool = ReactivClipIsInitialized()
 ```swift
 // Use as the main view in your App Clip
 ReactivClipView()
+```
+
+## Notification Handling
+
+```swift
+// Extension on NotificationCenter for handling notification taps
+// Call this from UNUserNotificationCenterDelegate's didReceive method
+NotificationCenter.default.postNotificationTapped(response: UNNotificationResponse)
 ```
 
 ## Error Types

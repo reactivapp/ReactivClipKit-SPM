@@ -31,6 +31,9 @@ A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleI
 **Q: How to customize the UI?**  
 A: UI customization is managed through the Reactiv Dashboard.
 
+**Q: Do I need to handle push notifications for ReactivClipKit?**  
+A: Yes. Set up `UNUserNotificationCenterDelegate` in your AppDelegate and call `NotificationCenter.default.postNotificationTapped(response:)` from the `userNotificationCenter(_:didReceive:withCompletionHandler:)` method. This is required for proper analytics tracking.
+
 ## Troubleshooting
 
 **Q: Why am I getting "Framework already initialized" warnings?**  
@@ -50,6 +53,9 @@ A: Make sure you've added the Sentry package to your App Clip target. No initial
 
 **Q: Do I need to initialize Firebase before ReactivClipKit?**  
 A: Yes. Firebase must be configured in your AppDelegate before initializing ReactivClipKit in your App's `init` method.
+
+**Q: Why aren't notification analytics being tracked?**  
+A: Make sure your AppDelegate implements `UNUserNotificationCenterDelegate` and calls `NotificationCenter.default.postNotificationTapped(response:)` when notifications are tapped.
 
 ---
 

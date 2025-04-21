@@ -20,18 +20,35 @@ Before integrating ReactivClipKit, ensure you have:
 
 ## Recommended Integration Pattern
 
-### 1. Create AppDelegate.swift for Firebase Configuration
+### 1. Create AppDelegate.swift for Firebase Configuration and Notification Handling
 
 ```swift
 // AppDelegate.swift
 import UIKit
 import FirebaseCore
+import ReactivClipKit
+import UserNotifications
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Configure Firebase
         FirebaseApp.configure()
+        
+        // Set up notification handling for ReactivClipKit analytics
+        UNUserNotificationCenter.current().delegate = self
+        
         return true
+    }
+    
+    // REQUIRED: Forward notification taps to ReactivClipKit for analytics
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        // This notifies ReactivClipKit about notification interactions
+        NotificationCenter.default.postNotificationTapped(response: response)
+        completionHandler()
     }
 }
 ```
@@ -74,7 +91,6 @@ struct MyAppClip: App {
 }
 ```
 
-> **Important**: Always initialize ReactivClipKit in the App's init method, not in the AppDelegate. The AppDelegate should only be used to configure Firebase.
 
 ## Error Handling
 
