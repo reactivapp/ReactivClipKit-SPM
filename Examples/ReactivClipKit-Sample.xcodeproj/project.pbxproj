@@ -6,14 +6,62 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7461013F2DB6C5D500529477 /* ReactivClipKit-SampleClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		746101472DB6C72E00529477 /* ReactivClipKit in Frameworks */ = {isa = PBXBuildFile; productRef = 746101462DB6C72E00529477 /* ReactivClipKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7461013D2DB6C5D500529477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7434095E2DAF1B6500E8F1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461012F2DB6C5D400529477;
+			remoteInfo = ReactivSampleClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		746101402DB6C5D500529477 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				7461013F2DB6C5D500529477 /* ReactivClipKit-SampleClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		743409662DAF1B6500E8F1D9 /* ReactivClipKit-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactivClipKit-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		743409662DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactivClipKit-SampleApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactivClipKit-SampleClip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		746101432DB6C5D500529477 /* Exceptions for "ReactivClipKit-SampleClip" folder in "ReactivClipKit-SampleClip" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7461012F2DB6C5D400529477 /* ReactivClipKit-SampleClip */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		743409682DAF1B6500E8F1D9 /* ReactivClipKit-Sample */ = {
+		743409682DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "ReactivClipKit-Sample";
+			path = "ReactivClipKit-SampleApp";
+			sourceTree = "<group>";
+		};
+		746101312DB6C5D400529477 /* ReactivClipKit-SampleClip */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				746101432DB6C5D500529477 /* Exceptions for "ReactivClipKit-SampleClip" folder in "ReactivClipKit-SampleClip" target */,
+			);
+			path = "ReactivClipKit-SampleClip";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,13 +74,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7461012D2DB6C5D400529477 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				746101472DB6C72E00529477 /* ReactivClipKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		7434095D2DAF1B6500E8F1D9 = {
 			isa = PBXGroup;
 			children = (
-				743409682DAF1B6500E8F1D9 /* ReactivClipKit-Sample */,
+				743409682DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp */,
+				746101312DB6C5D400529477 /* ReactivClipKit-SampleClip */,
 				743409672DAF1B6500E8F1D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +97,8 @@
 		743409672DAF1B6500E8F1D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				743409662DAF1B6500E8F1D9 /* ReactivClipKit-Sample.app */,
+				743409662DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp.app */,
+				746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,27 +106,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		743409652DAF1B6500E8F1D9 /* ReactivClipKit-Sample */ = {
+		743409652DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 743409752DAF1B6700E8F1D9 /* Build configuration list for PBXNativeTarget "ReactivClipKit-Sample" */;
+			buildConfigurationList = 743409752DAF1B6700E8F1D9 /* Build configuration list for PBXNativeTarget "ReactivClipKit-SampleApp" */;
 			buildPhases = (
 				743409622DAF1B6500E8F1D9 /* Sources */,
 				743409632DAF1B6500E8F1D9 /* Frameworks */,
 				743409642DAF1B6500E8F1D9 /* Resources */,
+				746101402DB6C5D500529477 /* Embed App Clips */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7461013E2DB6C5D500529477 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				743409682DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp */,
+			);
+			name = "ReactivClipKit-SampleApp";
+			packageProductDependencies = (
+			);
+			productName = "ReactivClipKit-Sample";
+			productReference = 743409662DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7461012F2DB6C5D400529477 /* ReactivClipKit-SampleClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 746101442DB6C5D500529477 /* Build configuration list for PBXNativeTarget "ReactivClipKit-SampleClip" */;
+			buildPhases = (
+				7461012C2DB6C5D400529477 /* Sources */,
+				7461012D2DB6C5D400529477 /* Frameworks */,
+				7461012E2DB6C5D400529477 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				743409682DAF1B6500E8F1D9 /* ReactivClipKit-Sample */,
+				746101312DB6C5D400529477 /* ReactivClipKit-SampleClip */,
 			);
-			name = "ReactivClipKit-Sample";
+			name = "ReactivClipKit-SampleClip";
 			packageProductDependencies = (
+				746101462DB6C72E00529477 /* ReactivClipKit */,
 			);
-			productName = "ReactivClipKit-Sample";
-			productReference = 743409662DAF1B6500E8F1D9 /* ReactivClipKit-Sample.app */;
-			productType = "com.apple.product-type.application";
+			productName = ReactivSampleClip;
+			productReference = 746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +166,9 @@
 					743409652DAF1B6500E8F1D9 = {
 						CreatedOnToolsVersion = 16.2;
 					};
+					7461012F2DB6C5D400529477 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 				};
 			};
 			buildConfigurationList = 743409612DAF1B6500E8F1D9 /* Build configuration list for PBXProject "ReactivClipKit-Sample" */;
@@ -94,18 +180,29 @@
 			);
 			mainGroup = 7434095D2DAF1B6500E8F1D9;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 743409672DAF1B6500E8F1D9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				743409652DAF1B6500E8F1D9 /* ReactivClipKit-Sample */,
+				743409652DAF1B6500E8F1D9 /* ReactivClipKit-SampleApp */,
+				7461012F2DB6C5D400529477 /* ReactivClipKit-SampleClip */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		743409642DAF1B6500E8F1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7461012E2DB6C5D400529477 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +219,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7461012C2DB6C5D400529477 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7461013E2DB6C5D500529477 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7461012F2DB6C5D400529477 /* ReactivClipKit-SampleClip */;
+			targetProxy = 7461013D2DB6C5D500529477 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		743409732DAF1B6700E8F1D9 /* Debug */ = {
@@ -244,10 +356,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-Sample/ReactivClipKit_Sample.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-SampleApp/ReactivClipKit_Sample.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-Sample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-SampleApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -281,10 +393,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-Sample/ReactivClipKit_Sample.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-SampleApp/ReactivClipKit_Sample.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-Sample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-SampleApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -313,6 +425,73 @@
 			};
 			name = Release;
 		};
+		746101412DB6C5D500529477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-SampleClip/ReactivSampleClip.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-SampleClip/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ReactivClipKit-SampleClip/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ReactivClipKit-Sample";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "YOUR-BUNDLE-ID.ReactivClipKitSample.ReactivClipKit-Sample.Clip";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		746101422DB6C5D500529477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ReactivClipKit-SampleClip/ReactivSampleClip.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ReactivClipKit-SampleClip/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ReactivClipKit-SampleClip/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ReactivClipKit-Sample";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "YOUR-BUNDLE-ID.ReactivClipKitSample.ReactivClipKit-Sample.Clip";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -325,7 +504,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		743409752DAF1B6700E8F1D9 /* Build configuration list for PBXNativeTarget "ReactivClipKit-Sample" */ = {
+		743409752DAF1B6700E8F1D9 /* Build configuration list for PBXNativeTarget "ReactivClipKit-SampleApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				743409762DAF1B6700E8F1D9 /* Debug */,
@@ -334,7 +513,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		746101442DB6C5D500529477 /* Build configuration list for PBXNativeTarget "ReactivClipKit-SampleClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				746101412DB6C5D500529477 /* Debug */,
+				746101422DB6C5D500529477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reactivapp/ReactivClipKit-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2404161;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		746101462DB6C72E00529477 /* ReactivClipKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */;
+			productName = ReactivClipKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7434095E2DAF1B6500E8F1D9 /* Project object */;
 }

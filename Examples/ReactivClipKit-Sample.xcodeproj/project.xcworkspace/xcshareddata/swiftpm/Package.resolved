@@ -1,0 +1,15 @@
+{
+  "originHash" : "0e1e3be4b851092ab9126cb3cd237d82ccdd200e24f1a26a63a5da1c5306c7c9",
+  "pins" : [
+    {
+      "identity" : "reactivclipkit-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/reactivapp/ReactivClipKit-SPM",
+      "state" : {
+        "revision" : "fd8330a265334c78105df89fa4dddec132e574da",
+        "version" : "1.0.2404161"
+      }
+    }
+  ],
+  "version" : 3
+}
