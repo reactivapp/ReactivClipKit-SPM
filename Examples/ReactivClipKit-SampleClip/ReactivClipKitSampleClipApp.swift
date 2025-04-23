@@ -70,7 +70,7 @@ struct ReactivClipKitSampleClipApp: App {
     private func configureReactivClipKit() {
         do {
             try ReactivClipInitialize(
-                appIdentifier: "", // Your app identifier from Reactiv dashboard
+                ***REMOVED***, // Your app identifier from Reactiv dashboard
                 ***REMOVED***, // Your Reactiv events token
                 firebaseSessionIDProvider: MockAnalytics.sessionID, // Real Analytics.sessionID
                 firebaseAppInstanceId: MockAnalytics.appInstanceID(), // Real Analytics.appInstanceID()
