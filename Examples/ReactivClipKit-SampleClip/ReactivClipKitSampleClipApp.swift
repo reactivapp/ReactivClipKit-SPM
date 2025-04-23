@@ -54,6 +54,7 @@ struct ReactivClipKitSampleClipApp: App {
     /// Initializes the App Clip and configures ReactivClipKit
     init() {
         configureReactivClipKit()
+        setupAnalytics()
     }
     
     // MARK: - Scene Configuration
@@ -77,8 +78,28 @@ struct ReactivClipKitSampleClipApp: App {
                 appStoreID: "123456", // Your App Store ID
                 parentBundleIdentifier: "com.yourapp.bundleid" // Your main app bundle ID
             )
+            print("[ReactivClipKitSampleClipApp] ReactivClipKit initialized successfully")
         } catch {
             print("[ERROR] Failed to initialize ReactivClipKit: \(error)")
+        }
+    }
+    
+    /// Sets up event tracking for analytics
+    private func setupAnalytics() {
+        // Wait a moment to ensure ReactivClipKit is fully initialized
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // Set up event tracking with our analytics manager
+            SampleAnalyticsManager.shared.setupEventObserving()
+            
+            print("[ReactivClipKitSampleClipApp] Analytics setup complete")
+            print("")
+            print("🔍 Events will now be logged when they occur:")
+            print("- When a product is viewed")
+            print("- When items are added to cart")
+            print("- When checkout completes")
+            print("- When screens are viewed")
+            print("- And other purchase flow events")
+            print("")
         }
     }
 }

@@ -7,6 +7,7 @@ Welcome to the ReactivClipKit documentation. This guide will help you integrate 
 - [Getting Started](#getting-started)
 - [Required Dependencies](#required-dependencies)
 - [Integration Details](#integration-details)
+- [Event System](#event-system)
 - [API Reference](#api-reference)
 - [Common Questions](#common-questions)
 - [Support](#support)
@@ -20,18 +21,19 @@ ReactivClipKit makes it easy to create rich, dynamic App Clip experiences. Follo
 3. **Configure Firebase**: Create an AppDelegate to configure Firebase
 4. **Initialize ReactivClipKit**: Call `try ReactivClipInitialize(...)` in your SwiftUI App's `init` method
 5. **Display**: Use `ReactivClipView()` as your root view
+6. **Set Up Event Handlers**: Implement analytics integration using the event system
 
 For detailed instructions, see the [Usage Guide](./Usage.md).
 
 ## Required Dependencies
 
 ### Sentry
-ReactivClipKit requires the Sentry package for error tracking:
+ReactivClipKit requires the Sentry package for error reporting:
 - Add the Sentry package to your App Clip target
 - No manual initialization required
 
 ### Firebase
-ReactivClipKit requires Firebase for analytics:
+ReactivClipKit requires Firebase for core functionality:
 - Follow the [official Firebase setup guide](https://firebase.google.com/docs/ios/setup)
 - Configure Firebase in your AppDelegate
 - Pass Firebase session info during ReactivClipKit initialization
@@ -40,8 +42,8 @@ ReactivClipKit requires Firebase for analytics:
 
 ReactivClipKit integrates with:
 
-- Firebase (required) - for analytics and tracking
-- Sentry (required) - for error tracking
+- Firebase (required) - for core functionality
+- Sentry (required) - for error reporting
 - App Store Connect - for app distribution
 
 ### Best Practices
@@ -51,6 +53,23 @@ ReactivClipKit integrates with:
 - Use proper error handling with try-catch blocks
 - Ensure Sentry package is added to your App Clip target
 - Always check initialization status with `ReactivClipIsInitialized()`
+- Set up event handlers after initialization is complete
+
+## Event System
+
+ReactivClipKit provides a comprehensive event system that allows you to:
+
+- Capture user interactions with typed data models
+- Subscribe to specific event types or all events
+- Integrate with your analytics platform
+- Access detailed information about products, carts, checkouts, and more
+
+The event system uses:
+- Type-safe data models for each event type
+- Publisher-subscriber pattern for event handling
+- Convenience properties for easy data access
+
+For details and examples, see the [Usage Guide](./Usage.md#working-with-events) and the [API Reference](./API.md#event-handling).
 
 ## API Reference
 

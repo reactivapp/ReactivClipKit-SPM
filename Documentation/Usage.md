@@ -34,13 +34,13 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         // Configure Firebase
         FirebaseApp.configure()
         
-        // Set up notification handling for ReactivClipKit analytics
+        // Set up notification handling for ReactivClipKit
         UNUserNotificationCenter.current().delegate = self
         
         return true
     }
     
-    // REQUIRED: Forward notification taps to ReactivClipKit for analytics
+    // REQUIRED: Forward notification taps to ReactivClipKit
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
@@ -91,6 +91,41 @@ struct MyAppClip: App {
 }
 ```
 
+## Working with Events
+
+ReactivClipKit provides an event system that allows you to receive and respond to user interactions within your app. Events include product views, cart actions, checkout processes, and more.
+
+### Event Handling
+
+You can subscribe to events using the publisher interface:
+
+```swift
+// Access the event publisher
+let publisher = ReactivClipEvents.publisher
+
+// Subscribe to a specific event
+publisher.on(.productViewed) { event in
+    if let productData = event.productViewedData {
+        // Handle product view event
+        print("Product viewed: \(productData.productTitle)")
+    }
+}
+
+// Subscribe to all events
+publisher.onEvent { event in
+    // Handle any event
+    print("Event received: \(event.type)")
+}
+```
+
+### Implementation Reference
+
+For a complete implementation example of how to handle events, see the `AnalyticsManager` in the ReactivClipKit-SampleClip example app. This demonstrates best practices for:
+
+- Setting up event subscriptions
+- Processing different event types
+- Extracting typed data from events
+- Integrating with analytics platforms
 
 ## Error Handling
 
