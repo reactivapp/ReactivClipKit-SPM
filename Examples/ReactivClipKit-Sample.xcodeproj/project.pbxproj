@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7422655D2DBB581200075DD1 /* ReactivClipKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7422655C2DBB581200075DD1 /* ReactivClipKit */; };
 		7461013F2DB6C5D500529477 /* ReactivClipKit-SampleClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		746101472DB6C72E00529477 /* ReactivClipKit in Frameworks */ = {isa = PBXBuildFile; productRef = 746101462DB6C72E00529477 /* ReactivClipKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746101472DB6C72E00529477 /* ReactivClipKit in Frameworks */,
+				7422655D2DBB581200075DD1 /* ReactivClipKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +147,7 @@
 			);
 			name = "ReactivClipKit-SampleClip";
 			packageProductDependencies = (
-				746101462DB6C72E00529477 /* ReactivClipKit */,
+				7422655C2DBB581200075DD1 /* ReactivClipKit */,
 			);
 			productName = ReactivSampleClip;
 			productReference = 746101302DB6C5D400529477 /* ReactivClipKit-SampleClip.app */;
@@ -181,7 +181,7 @@
 			mainGroup = 7434095D2DAF1B6500E8F1D9;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */,
+				7422655B2DBB581200075DD1 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 743409672DAF1B6500E8F1D9 /* Products */;
@@ -525,20 +525,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */ = {
+		7422655B2DBB581200075DD1 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/reactivapp/ReactivClipKit-SPM";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2404161;
+				minimumVersion = 1.0.2504242;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		746101462DB6C72E00529477 /* ReactivClipKit */ = {
+		7422655C2DBB581200075DD1 /* ReactivClipKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 746101452DB6C72E00529477 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */;
+			package = 7422655B2DBB581200075DD1 /* XCRemoteSwiftPackageReference "ReactivClipKit-SPM" */;
 			productName = ReactivClipKit;
 		};
 /* End XCSwiftPackageProductDependency section */
