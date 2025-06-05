@@ -22,11 +22,13 @@ A: No. Subsequent initialization attempts will throw a `multipleInitialization` 
 
 ## Features
 
-**Q: Do I need to initialize Sentry?**  
-A: No. ReactivClipKit handles Sentry internally. You only need to install the Sentry package.
+**Q: Do I need to manually initialize Sentry?**  
+A: No. ReactivClipKit handles all Sentry configuration internally when you pass `SentrySDK.self`. Don't call `SentrySDK.start()` yourself.
+
 
 **Q: What's the minimum required setup?**  
-A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleIdentifier`, plus the Firebase and Sentry packages installed in your target. You also need to provide `firebaseSessionIDProvider` and `firebaseAppInstanceId`.
+A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleIdentifier`, plus the Firebase package installed in your target. You also need to provide `firebaseSessionIDProvider` and `firebaseAppInstanceId`. Sentry is optional but recommended.
+
 
 **Q: How to customize the UI?**  
 A: UI customization is managed through the Reactiv Dashboard.
@@ -90,9 +92,6 @@ A: Use proper error handling with try-catch and log any errors from initializati
 
 **Q: How can I check if initialization was successful?**  
 A: Call `ReactivClipIsInitialized()` which returns a boolean indicating status.
-
-**Q: My app crashes with Sentry-related errors. What should I do?**  
-A: Make sure you've added the Sentry package to your App Clip target. No initialization is required, but the package must be included.
 
 **Q: Do I need to initialize Firebase before ReactivClipKit?**  
 A: Yes. Firebase must be configured in your AppDelegate before initializing ReactivClipKit in your App's `init` method.

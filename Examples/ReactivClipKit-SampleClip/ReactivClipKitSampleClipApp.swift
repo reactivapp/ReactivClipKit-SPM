@@ -76,7 +76,8 @@ struct ReactivClipKitSampleClipApp: App {
                 firebaseSessionIDProvider: MockAnalytics.sessionID, // Real Analytics.sessionID
                 firebaseAppInstanceId: MockAnalytics.appInstanceID(), // Real Analytics.appInstanceID()
                 appStoreID: "", // Your App Store ID
-                parentBundleIdentifier: "com.yourapp.bundleid" // Your main app bundle ID
+                parentBundleIdentifier: "com.yourapp.bundleid",
+                sentrySDK: nil // Pass SentrySDK.self from the Sentry framework
             )
             print("[ReactivClipKitSampleClipApp] ReactivClipKit initialized successfully")
         } catch {

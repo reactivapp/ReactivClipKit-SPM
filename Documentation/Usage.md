@@ -6,7 +6,7 @@ Before integrating ReactivClipKit, ensure you have:
 
 1. **Sentry Package**
    - Add the Sentry package to your App Clip target
-   - No manual initialization needed - ReactivClipKit handles this automatically
+   - Pass the Sentry SDK class to ReactivClipKit for error reporting
    ```swift
    dependencies: [
        .package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.0.0")
@@ -60,6 +60,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 import SwiftUI
 import ReactivClipKit
 import FirebaseAnalytics
+import Sentry
 
 @main
 struct MyAppClip: App {
@@ -75,7 +76,8 @@ struct MyAppClip: App {
                 firebaseSessionIDProvider: Analytics.sessionID,
                 firebaseAppInstanceId: Analytics.appInstanceID(),
                 appStoreID: "123456789",
-                parentBundleIdentifier: "com.yourapp.bundle"
+                parentBundleIdentifier: "com.yourapp.bundle",
+                sentrySDK: SentrySDK.self  
             )
         } catch {
             print("ReactivClipKit initialization failed: \(error)")

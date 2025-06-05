@@ -10,7 +10,8 @@ try ReactivClipInitialize(
     firebaseSessionIDProvider: FirebaseSessionIDProvider? = nil,  // Firebase session callback
     firebaseAppInstanceId: String? = nil,                        // Firebase instance ID
     appStoreID: String,            // Required: App Store Connect ID
-    parentBundleIdentifier: String  // Required: Parent app's bundle ID
+    parentBundleIdentifier: String, // Required: Parent app's bundle ID
+    sentrySDK: AnyClass? = nil     // Sentry SDK class for error reporting
 )
 ```
 

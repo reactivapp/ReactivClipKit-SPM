@@ -28,9 +28,10 @@ For detailed instructions, see the [Usage Guide](./Usage.md).
 ## Required Dependencies
 
 ### Sentry
-ReactivClipKit requires the Sentry package for error reporting:
+ReactivClipKit integrates with Sentry for error reporting:
 - Add the Sentry package to your App Clip target
-- No manual initialization required
+- Pass `SentrySDK.self` during initialization to enable error reporting
+- No manual Sentry configuration required
 
 ### Firebase
 ReactivClipKit requires Firebase for core functionality:
