@@ -10,6 +10,7 @@ Welcome to the ReactivClipKit documentation. This guide will help you integrate 
 - [Event System](#event-system)
 - [API Reference](#api-reference)
 - [Common Questions](#common-questions)
+- [Resources](#resources)
 - [Support](#support)
 
 ## Getting Started
@@ -23,7 +24,15 @@ ReactivClipKit makes it easy to create rich, dynamic App Clip experiences. Follo
 5. **Display**: Use `ReactivClipView()` as your root view
 6. **Set Up Event Handlers**: Implement analytics integration using the event system
 
-For detailed instructions, see the [Usage Guide](./Usage.md).
+### 📹 Integration Tutorial Video
+
+For a complete step-by-step visual guide, watch our integration tutorial:
+
+**[ReactivClipKit Integration Tutorial](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)**
+
+This video covers the entire integration process from setup to implementation.
+
+For detailed written instructions, see the [Usage Guide](./Usage.md).
 
 ## Required Dependencies
 
@@ -79,6 +88,15 @@ For detailed information about the available APIs, see the [API Reference](./API
 ## Common Questions
 
 See our [FAQ](./FAQ.md) for answers to common questions and troubleshooting tips.
+
+## Resources
+
+### Official Documentation
+- [Creating an App Clip with Xcode - Apple Developer](https://developer.apple.com/documentation/appclip/creating-an-app-clip-with-xcode)
+- [Firebase iOS SDK Setup Guide](https://firebase.google.com/docs/ios/setup)
+
+### ReactivClipKit Integration
+- [ReactivClipKit Integration Tutorial Video](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)
 
 ## Support
 
