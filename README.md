@@ -41,6 +41,14 @@ Add Firebase to your App Clip target:
 
 ## Quick Start
 
+### 📹 Integration Tutorial Video
+
+For a complete step-by-step visual guide, watch our integration tutorial:
+
+**[ReactivClipKit Integration Tutorial](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)**
+
+This video covers the entire integration process from setup to implementation.
+
 ### Step 1: Configure Firebase
 
 Your App Clip needs to configure Firebase before initializing ReactivClipKit. Create an AppDelegate.swift file for this purpose:
