@@ -71,23 +71,26 @@ enum ReactivClipEventType: String {
     // Product events
     case productViewed
     case productShared
-    
+
     // Cart events
     case cartItemAdded
     case cartItemRemoved
     case cartItemUpdated
     case cartView
-    
+
     // Checkout events
     case checkoutStarted
     case checkoutSuccess
     case checkoutFailed
-    
+
     // App events
     case screenViewed
     case notificationOpened
+    case notificationScheduled
     case applicationOpened
-    
+
+    // Collection events
+    case collectionViewed
 }
 
 ```
@@ -103,7 +106,7 @@ publisher.on(.productViewed) { event in
         let productId = productData.productId
         let productTitle = productData.productTitle
         let productPrice = productData.productPrice
-        
+
         // Use typed data...
     }
 }
@@ -130,4 +133,3 @@ enum ReactivClipInitError: Error {
     case multipleInitialization  // Framework already initialized
 }
 ```
-
