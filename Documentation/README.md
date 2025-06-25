@@ -18,11 +18,9 @@ Welcome to the ReactivClipKit documentation. This guide will help you integrate 
 ReactivClipKit makes it easy to create rich, dynamic App Clip experiences. Follow these steps to integrate the framework:
 
 1. **Install ReactivClipKit**: Add the package using Swift Package Manager
-2. **Install Dependencies**: Add required Sentry package and Firebase SDK
-3. **Configure Firebase**: Create an AppDelegate to configure Firebase
-4. **Initialize ReactivClipKit**: Call `try ReactivClipInitialize(...)` in your SwiftUI App's `init` method
-5. **Display**: Use `ReactivClipView()` as your root view
-6. **Set Up Event Handlers**: Implement analytics integration using the event system
+2. **Initialize ReactivClipKit**: Call `try ReactivClipInitialize(...)` in your SwiftUI App's `init` method
+3. **Display**: Use `ReactivClipView()` as your root view
+4. **Set Up Event Handlers**: Implement analytics integration using the event system
 
 ### 📹 Integration Tutorial Video
 
@@ -42,23 +40,15 @@ ReactivClipKit integrates with Sentry for error reporting:
 - Pass `SentrySDK.self` during initialization to enable error reporting
 - No manual Sentry configuration required
 
-### Firebase
-ReactivClipKit requires Firebase for core functionality:
-- Follow the [official Firebase setup guide](https://firebase.google.com/docs/ios/setup)
-- Configure Firebase in your AppDelegate
-- Pass Firebase session info during ReactivClipKit initialization
-
 ## Integration Details
 
 ReactivClipKit integrates with:
 
-- Firebase (required) - for core functionality
 - Sentry (required) - for error reporting
 - App Store Connect - for app distribution
 
 ### Best Practices
 
-- Configure Firebase in the AppDelegate
 - Initialize ReactivClipKit in the SwiftUI App's `init` method, not in AppDelegate
 - Use proper error handling with try-catch blocks
 - Ensure Sentry package is added to your App Clip target
@@ -93,7 +83,6 @@ See our [FAQ](./FAQ.md) for answers to common questions and troubleshooting tips
 
 ### Official Documentation
 - [Creating an App Clip with Xcode - Apple Developer](https://developer.apple.com/documentation/appclip/creating-an-app-clip-with-xcode)
-- [Firebase iOS SDK Setup Guide](https://firebase.google.com/docs/ios/setup)
 
 ### ReactivClipKit Integration
 - [ReactivClipKit Integration Tutorial Video](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)

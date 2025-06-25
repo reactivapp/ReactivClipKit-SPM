@@ -7,8 +7,6 @@
 try ReactivClipInitialize(
     appIdentifier: String,          // Required: Your Reactiv App ID
     reactivEventsToken: String,     // Required: Your analytics token
-    firebaseSessionIDProvider: FirebaseSessionIDProvider? = nil,  // Firebase session callback
-    firebaseAppInstanceId: String? = nil,                        // Firebase instance ID
     appStoreID: String,            // Required: App Store Connect ID
     parentBundleIdentifier: String, // Required: Parent app's bundle ID
     sentrySDK: AnyClass? = nil     // Sentry SDK class for error reporting
