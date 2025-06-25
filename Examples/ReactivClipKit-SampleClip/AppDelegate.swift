@@ -7,7 +7,7 @@
 
 // MARK: - Imports
 
-// import Firebase
+//
 import ReactivClipKit
 import UIKit
 import UserNotifications
@@ -30,9 +30,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     ///   - launchOptions: A dictionary indicating the reason the app was launched
     /// - Returns: `true` if the app can handle the launch options
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Configure Firebase in a production environment
-        // FirebaseApp.configure()
-        
         // Set up notification handling
         UNUserNotificationCenter.current().delegate = self
         

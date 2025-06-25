@@ -31,14 +31,6 @@ dependencies: [
 
 **Note:** ReactivClipKit will handle Sentry initialization automatically.
 
-### 2. Firebase Analytics
-
-Add Firebase to your App Clip target:
-
-1. Follow the [official Firebase iOS SDK installation guide](https://firebase.google.com/docs/ios/setup)
-2. Add Firebase Analytics to your App Clip target
-3. Pass Firebase session information during ReactivClipKit initialization
-
 ## Quick Start
 
 ### 📹 Integration Tutorial Video
@@ -49,35 +41,16 @@ For a complete step-by-step visual guide, watch our integration tutorial:
 
 This video covers the entire integration process from setup to implementation.
 
-### Step 1: Configure Firebase
-
-Your App Clip needs to configure Firebase before initializing ReactivClipKit. Create an AppDelegate.swift file for this purpose:
-
-```swift
-// AppDelegate.swift
-import UIKit
-import FirebaseCore
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Configure Firebase
-        FirebaseApp.configure()
-        return true
-    }
-}
-```
-
-### Step 2: Initialize ReactivClipKit in App's init
+### Step 1: Initialize ReactivClipKit in App's init
 
 ```swift
 // MyAppClip.swift
 import SwiftUI
 import ReactivClipKit
-import FirebaseAnalytics
 
 @main
 struct MyAppClip: App {
-    // Connect AppDelegate to configure Firebase
+    // Connect AppDelegate
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init() {
@@ -86,8 +59,6 @@ struct MyAppClip: App {
             try ReactivClipInitialize(
                 appIdentifier: "your-app-id",
                 reactivEventsToken: "your-events-token",
-                firebaseSessionIDProvider: Analytics.sessionID,
-                firebaseAppInstanceId: Analytics.appInstanceID(),
                 appStoreID: "123456789",
                 parentBundleIdentifier: "com.yourapp.bundle"
             )

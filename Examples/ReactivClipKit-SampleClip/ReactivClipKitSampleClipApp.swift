@@ -8,33 +8,6 @@
 import ReactivClipKit
 import SwiftUI
 
-// MARK: - Mock Analytics Service
-
-/// MockAnalytics
-///
-/// This class provides mock implementations of Firebase Analytics methods
-/// for demonstration purposes without requiring Firebase package installation.
-/// In a production environment, these would be replaced with actual Firebase SDK calls.
-enum MockAnalytics {
-    /// Provides a simulated asynchronous Firebase session ID
-    ///
-    /// - Parameter completion: Callback that receives the generated session ID or error
-    static func sessionID(completion: @escaping (Int64, Error?) -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-            let mockSessionID = Int64(Date().timeIntervalSince1970 * 1000)
-            print("[MockAnalytics] Generated session ID: \(mockSessionID)")
-            completion(mockSessionID, nil)
-        }
-    }
-    
-    /// Provides a simulated Firebase app instance ID
-    ///
-    /// - Returns: A closure that returns a mock app instance ID
-    static var appInstanceID: () -> String? {
-        return { "1234567890" } // Static mock ID for demonstration
-    }
-}
-
 // MARK: - App Entry Point
 
 /// ReactivClipKitSampleClipApp
@@ -73,8 +46,6 @@ struct ReactivClipKitSampleClipApp: App {
             try ReactivClipInitialize(
                 appIdentifier: "", // Your app identifier from Reactiv dashboard
                 reactivEventsToken: "", // Your Reactiv events token
-                firebaseSessionIDProvider: MockAnalytics.sessionID, // Real Analytics.sessionID
-                firebaseAppInstanceId: MockAnalytics.appInstanceID(), // Real Analytics.appInstanceID()
                 appStoreID: "", // Your App Store ID
                 parentBundleIdentifier: "com.yourapp.bundleid",
                 sentrySDK: nil // Pass SentrySDK.self from the Sentry framework

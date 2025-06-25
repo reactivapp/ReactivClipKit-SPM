@@ -13,27 +13,18 @@ Before integrating ReactivClipKit, ensure you have:
    ]
    ```
 
-2. **Firebase Analytics**
-   - Firebase is required for app functionality
-   - Follow the [official Firebase iOS SDK setup guide](https://firebase.google.com/docs/ios/setup)
-   - Firebase must be configured before ReactivClipKit initialization
-
 ## Recommended Integration Pattern
 
-### 1. Create AppDelegate.swift for Firebase Configuration and Notification Handling
+### 1. Create AppDelegate.swift for Notification Handling
 
 ```swift
 // AppDelegate.swift
 import UIKit
-import FirebaseCore
 import ReactivClipKit
 import UserNotifications
 
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Configure Firebase
-        FirebaseApp.configure()
-        
         // Set up notification handling for ReactivClipKit
         UNUserNotificationCenter.current().delegate = self
         
@@ -59,22 +50,19 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 // MyAppClip.swift
 import SwiftUI
 import ReactivClipKit
-import FirebaseAnalytics
 import Sentry
 
 @main
 struct MyAppClip: App {
-    // Connect AppDelegate for Firebase configuration
+    // Connect AppDelegate
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init() {
-        // Initialize ReactivClipKit after Firebase is configured
+        // Initialize ReactivClipKit
         do {
             try ReactivClipInitialize(
                 appIdentifier: "your-app-id",
                 reactivEventsToken: "your-events-token",
-                firebaseSessionIDProvider: Analytics.sessionID,
-                firebaseAppInstanceId: Analytics.appInstanceID(),
                 appStoreID: "123456789",
                 parentBundleIdentifier: "com.yourapp.bundle",
                 sentrySDK: SentrySDK.self  
