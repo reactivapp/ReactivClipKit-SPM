@@ -72,6 +72,20 @@ class SampleAnalyticsManager {
             guard let screenData = event.screenViewedData else { return }
             self?.handleScreenViewed(screenData)
         }
+
+        // MARK: Notification Events
+
+        publisher.on(.notificationScheduled) { [weak self] event in
+            guard let notificationData = event.notificationScheduledData else { return }
+            self?.handleNotificationScheduled(notificationData)
+        }
+
+        // MARK: Collection Events
+
+        publisher.on(.collectionViewed) { [weak self] event in
+            guard let collectionData = event.collectionViewedData else { return }
+            self?.handleCollectionViewed(collectionData)
+        }
         
         // MARK: Multiple Event Types
 
@@ -114,6 +128,26 @@ class SampleAnalyticsManager {
         //     "item_name": data.productTitle,
         //     "price": data.productPrice
         // ])
+    }
+
+    /// Handles collection viewed events
+    private func handleCollectionViewed(_ data: CollectionViewedData) {
+        print("📊 Analytics: Collection Viewed")
+        print("  - Collection: \(data.collectionName)")
+        print("  - ID: \(data.collectionId)")
+
+        // In a real implementation:
+        // YourAnalytics.trackEvent("view_collection", parameters: [...])
+    }    
+
+    /// Handles notification scheduled events
+    private func handleNotificationScheduled(_ data: NotificationScheduledData) {
+        print("📊 Analytics: Notification Scheduled")
+        print("  - Notification: \(data.notificationName)")
+        print("  - ID: \(data.notificationId)")
+
+        // In a real implementation:
+        // YourAnalytics.trackEvent("notification_scheduled", parameters: [...])
     }
     
     /// Handles cart item added events
