@@ -1,98 +1,108 @@
 # ReactivClipKit
 
-A Swift framework for integrating Reactiv Clip experiences into iOS App Clips.
+A Swift package that brings Reactiv's rich commerce experiences to iOS App Clips.
 
-## Installation
+---
 
-Add the following dependency to your `Package.swift` file:
+## ✨ Features
+
+- Plug-and-play App Clip storefront powered by Reactiv
+- Built-in analytics stream with typed events
+- Single-store **and** multi-store initialization modes
+
+---
+
+## 📦 Installation (Swift Package Manager)
 
 ```swift
-dependencies: [
+.dependencies = [
     .package(url: "https://github.com/reactivapp/ReactivClipKit-SPM.git", from: "1.0.0")
 ]
 ```
 
-Or add it directly through Xcode:
-1. File > Add Packages...
-2. Enter repository URL: `https://github.com/reactivapp/ReactivClipKit-SPM.git`
-3. Select version requirements and target
+Add the package in **Xcode → File → Add Packages…** and select the **ReactivClipKit** product for your App Clip target.
 
-## Required Dependencies
-
-### 1. Sentry
-
-Add Sentry to your App Clip target:
+### Required dependency
 
 ```swift
-dependencies: [
-    .package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.0.0")
+.package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.0.0")
+```
+
+ReactivClipKit will initialise Sentry automatically if the SDK class is supplied.
+
+---
+
+## 🚀 Quick start
+
+### 1 · Single-store initialization
+
+```swift
+try ReactivClipInitialize(
+    appIdentifier: "your-reactiv-app-id",
+    reactivEventsToken: "your-events-token",
+    appStoreID: "123456789",
+    parentBundleIdentifier: "com.yourapp.bundle",
+    sentrySDK: SentrySDK.self
+)
+```
+
+### 2 · Multi-store initialization
+
+```swift
+let stores: [StoreDescriptor] = [
+    StoreDescriptor(uuid: "intl-uuid", storeURL: "https://domain.com",    eventsToken: "token-intl"),
+    StoreDescriptor(uuid: "ca-uuid",   storeURL: "https://domain.com/ca", eventsToken: "token-ca"),
+    StoreDescriptor(uuid: "au-uuid",   storeURL: "https://domain.com/au", eventsToken: "token-au"),
+    StoreDescriptor(uuid: "gb-uuid",   storeURL: "https://domain.com/gb", eventsToken: "token-gb")
 ]
+
+try ReactivClipInitializeMultiStore(
+    stores: stores,
+    appStoreID: "123456789",
+    parentBundleIdentifier: "com.yourapp.bundle",
+    sentrySDK: SentrySDK.self
+)
 ```
 
-**Note:** ReactivClipKit will handle Sentry initialization automatically.
+The framework chooses the descriptor whose `storeURL` is the longest prefix of the invocation URL. If nothing matches, the first descriptor acts as a fallback.
 
-## Quick Start
-
-### 📹 Integration Tutorial Video
-
-For a complete step-by-step visual guide, watch our integration tutorial:
-
-**[ReactivClipKit Integration Tutorial](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)**
-
-This video covers the entire integration process from setup to implementation.
-
-### Step 1: Initialize ReactivClipKit in App's init
+### 3 · Launch the view
 
 ```swift
-// MyAppClip.swift
-import SwiftUI
-import ReactivClipKit
-
-@main
-struct MyAppClip: App {
-    // Connect AppDelegate
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    init() {
-        // Initialize ReactivClipKit
-        do {
-            try ReactivClipInitialize(
-                appIdentifier: "your-app-id",
-                reactivEventsToken: "your-events-token",
-                appStoreID: "123456789",
-                parentBundleIdentifier: "com.yourapp.bundle"
-            )
-        } catch {
-            print("ReactivClipKit initialization failed: \(error)")
-        }
-    }
-    
-    var body: some Scene {
-        WindowGroup {
-            ReactivClipView()
-        }
-    }
-}
+ReactivClipView()
 ```
 
-## Requirements
+---
 
-- iOS 16.0+
-- Xcode 14.0+
-- Swift 5.7+
+## 📹 Video tutorial
 
-## Documentation
+Watch the end-to-end integration walk-through → **[ReactivClipKit Integration Tutorial](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)**
 
-See the [Documentation folder](./Documentation) for detailed guides:
+---
 
-- [Usage Guide](./Documentation/Usage.md)
-- [API Reference](./Documentation/API.md)
+## 🛠 Requirements
+
+- iOS 16+
+- Xcode 14+
+
+---
+
+## 📚 Documentation
+
+Detailed guides live in the `Documentation` folder:
+
+- [Usage](./Documentation/Usage.md)
+- [API reference](./Documentation/API.md)
 - [FAQ](./Documentation/FAQ.md)
 
-## Support
+---
 
-For support inquiries, contact us at support@reactivapp.com
+## 🤝 Support
 
-## License
+Need help? → support@reactivapp.com
 
-ReactivClipKit is proprietary software. Please contact Reactiv for licensing details.
+---
+
+## 🔒 License
+
+ReactivClipKit is proprietary software. Contact Reactiv for licensing details.

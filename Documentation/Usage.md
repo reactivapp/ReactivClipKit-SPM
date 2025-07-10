@@ -7,11 +7,6 @@ Before integrating ReactivClipKit, ensure you have:
 1. **Sentry Package**
    - Add the Sentry package to your App Clip target
    - Pass the Sentry SDK class to ReactivClipKit for error reporting
-   ```swift
-   dependencies: [
-       .package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.0.0")
-   ]
-   ```
 
 ## Recommended Integration Pattern
 
@@ -27,10 +22,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Set up notification handling for ReactivClipKit
         UNUserNotificationCenter.current().delegate = self
-        
+
         return true
     }
-    
+
     // REQUIRED: Forward notification taps to ReactivClipKit
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
@@ -56,7 +51,7 @@ import Sentry
 struct MyAppClip: App {
     // Connect AppDelegate
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     init() {
         // Initialize ReactivClipKit
         do {
@@ -65,14 +60,14 @@ struct MyAppClip: App {
                 reactivEventsToken: "your-events-token",
                 appStoreID: "123456789",
                 parentBundleIdentifier: "com.yourapp.bundle",
-                sentrySDK: SentrySDK.self  
+                sentrySDK: SentrySDK.self
             )
         } catch {
             print("ReactivClipKit initialization failed: \(error)")
             // Handle initialization failure
         }
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ReactivClipView()
@@ -138,3 +133,25 @@ if ReactivClipIsInitialized() {
     // Framework not initialized yet
 }
 ```
+
+## Multi-Store Initialization
+
+If your brand operates multiple regional storefronts, you can initialize the framework once with an array of `StoreDescriptor` instances instead of a single store identifier.
+
+```swift
+let stores: [StoreDescriptor] = [
+    StoreDescriptor(uuid: "intl-uuid", storeURL: "https://domain.com",    eventsToken: "token-intl"),
+    StoreDescriptor(uuid: "ca-uuid",   storeURL: "https://domain.com/ca", eventsToken: "token-ca"),
+    StoreDescriptor(uuid: "au-uuid",   storeURL: "https://domain.com/au", eventsToken: "token-au"),
+    StoreDescriptor(uuid: "gb-uuid",   storeURL: "https://domain.com/gb", eventsToken: "token-gb")
+]
+
+try ReactivClipInitializeMultiStore(
+    stores: stores,
+    appStoreID: "123456789",
+    parentBundleIdentifier: "com.yourapp.bundle",
+    sentrySDK: SentrySDK.self
+)
+```
+
+`ReactivClipKit` selects the descriptor whose `storeURL` is the longest prefix of the App Clip invocation URL. If no match is found the first descriptor in the array is used as a fallback.

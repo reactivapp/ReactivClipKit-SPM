@@ -43,6 +43,24 @@ struct ReactivClipKitSampleClipApp: App {
     /// Configures the ReactivClipKit SDK with required parameters
     private func configureReactivClipKit() {
         do {
+            // -------------------------------------------------------------
+            // Multi-Store Initialization Example 
+            // -------------------------------------------------------------
+            // let stores: [StoreDescriptor] = [
+            //     StoreDescriptor(uuid: "intl-uuid", storeURL: "https://domain.com",    eventsToken: "token-intl"),
+            //     StoreDescriptor(uuid: "ca-uuid",   storeURL: "https://domain.com/ca", eventsToken: "token-ca"),
+            //     StoreDescriptor(uuid: "au-uuid",   storeURL: "https://domain.com/au", eventsToken: "token-au"),
+            //     StoreDescriptor(uuid: "gb-uuid",   storeURL: "https://domain.com/gb", eventsToken: "token-gb")
+            // ]
+            //
+            // try ReactivClipInitializeMultiStore(
+            //     stores: stores,
+            //     appStoreID: "", // Your App Store ID
+            //     parentBundleIdentifier: "com.yourapp.bundleid",
+            //     sentrySDK: nil // Pass SentrySDK.self if using Sentry
+            // )
+            // -------------------------------------------------------------
+            
             try ReactivClipInitialize(
                 appIdentifier: "", // Your app identifier from Reactiv dashboard
                 reactivEventsToken: "", // Your Reactiv events token
