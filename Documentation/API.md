@@ -84,8 +84,11 @@ enum ReactivClipEventType: String {
     // App events
     case screenViewed
     case notificationOpened
+    case notificationScheduled
     case applicationOpened
 
+    // Collection events
+    case collectionViewed
 }
 
 ```
