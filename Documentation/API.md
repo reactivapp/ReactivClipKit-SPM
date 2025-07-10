@@ -131,3 +131,15 @@ enum ReactivClipInitError: Error {
     case multipleInitialization  // Framework already initialized
 }
 ```
+
+### Multi-Store initializer
+
+```swift
+// Initialize the framework for multiple storefronts (throws on error)
+try ReactivClipInitializeMultiStore(
+    stores: [StoreDescriptor],         // Required: descriptors for each storefront
+    appStoreID: String,               // Required: App Store Connect ID
+    parentBundleIdentifier: String,   // Required: Parent app's bundle ID
+    sentrySDK: AnyClass? = nil        // Sentry SDK class for error reporting
+)
+```
