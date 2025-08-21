@@ -2,30 +2,29 @@
 
 All notable changes to ReactivClipKit will be documented in this file.
 
-## 1.0.2508201
+## 1.0.2508211
 
 New features and improvements
 
+## 1.0.2508201
+
+New features and improvements
 
 ## 1.0.2507101
 
 New features and improvements
 
-
 ## 1.0.2506251
 
 New features and improvements
-
 
 ## 1.0.2506121
 
 New features and improvements
 
-
 ## 1.0.2506051
 
 New features and improvements
-
 
 ## 1.0.2504231 (2025-04-23)
 
