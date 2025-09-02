@@ -8,6 +8,9 @@ Before integrating ReactivClipKit, ensure you have:
    - Add the Sentry package to your App Clip target
    - Pass the Sentry SDK class to ReactivClipKit for error reporting
 
+2. **App Clip Configuration**
+   - Add `NSAppClipRequestEphemeralUserNotification` key set to `true` in your App Clip's Info.plist to enable notification permissions
+
 ## Recommended Integration Pattern
 
 ### 1. Create AppDelegate.swift for Notification Handling
