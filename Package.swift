@@ -17,7 +17,7 @@ let package = Package(
         .binaryTarget(
             name: "ReactivClipKit",
             url: "https://cdn.reactivapp.com/downloads/reactiv-clip-kit/ReactivClipKit-1.1.2509022.xcframework.zip",
-            checksum: "96fa80e686dfb08b6a9fb847084acda8f78ffdc4df142723f377c11ffbd5caf1"
+            checksum: "0620456464618ad8468828568a06c665f9088a9d18ac78783e4136376877ffb1"
         )
     ]
 ) 
