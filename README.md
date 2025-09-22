@@ -83,7 +83,7 @@ Watch the end-to-end integration walk-through → **[ReactivClipKit Integration 
 ## 🛠 Requirements
 
 - iOS 16+
-- Xcode 14+
+- Xcode 14+ (Xcode 26+ required for v1.2+)
 
 ---
 
