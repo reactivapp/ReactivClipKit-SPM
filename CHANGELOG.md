@@ -2,7 +2,7 @@
 
 All notable changes to ReactivClipKit will be documented in this file.
 
-## 1.2.x
+## 2.0.x
 
 iOS 26 features and enhancements. **Requires Xcode 26.**
 
