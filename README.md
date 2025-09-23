@@ -2,6 +2,8 @@
 
 A Swift package that brings Reactiv's rich commerce experiences to iOS App Clips.
 
+> **📢 ReactivClipKit v2.x is now available!** Featuring Liquid Glass design and iOS 26 support. Requires Xcode 26+. [See migration guide](#-version-2x-migration) below.
+
 ---
 
 ## ✨ Features
@@ -83,7 +85,37 @@ Watch the end-to-end integration walk-through → **[ReactivClipKit Integration 
 ## 🛠 Requirements
 
 - iOS 16+
-- Xcode 14+ (Xcode 26+ required for v1.2+)
+- **v1.x**: Xcode 14+
+- **v2.x**: Xcode 26+ (for Liquid Glass and iOS 26 features)
+
+---
+
+## 🚀 Version 2.x Migration
+
+We're excited to announce that Reactiv ClipKit v2.x is now available! This release introduces major updates and paves the way for future innovation.
+
+### **What's New**
+
+- **Liquid Glass**: A sleek new design layer that enhances the look and feel of your App Clips
+- **Xcode 26 Compatibility**: ClipKit v2.x has been updated to fully support Xcode 26 and iOS 26 features
+
+### **Important Upgrade Notes**
+
+- **Xcode 26 Required**: To use Reactiv ClipKit v2.x, you must update your Xcode projects to Xcode 26
+- **v1.x Support Timeline**: Reactiv ClipKit v1.x will continue to support Xcode 16+ for the next 90 days. After that period, development on v1.x will cease
+- **Automatic Protection**: If your ClipKit package dependency is set to "Up to Next Major Version" (default), you will remain on v1.x until you explicitly choose to upgrade
+
+### **Migration Path**
+
+To upgrade to v2.x:
+
+1. Update to Xcode 26
+2. Change your package dependency from v1.x to v2.x
+3. Test your App Clip with the new Liquid Glass features
+
+### **Recommendation**
+
+To stay current with the latest features and security updates, we strongly recommend upgrading to Xcode 26 and adopting Reactiv ClipKit v2.x as soon as your development timeline allows.
 
 ---
 
