@@ -5,11 +5,27 @@
 Before integrating ReactivClipKit, ensure you have:
 
 1. **Sentry Package**
+
    - Add the Sentry package to your App Clip target
    - Pass the Sentry SDK class to ReactivClipKit for error reporting
 
 2. **App Clip Configuration**
+
    - Add `NSAppClipRequestEphemeralUserNotification` key set to `true` in your App Clip's Info.plist to enable notification permissions
+
+3. **Custom Fonts (Optional, Experimental)**
+   - Add your custom font files (`.ttf` / `.otf`) to the **App Clip target**
+   - Add each font filename to the `UIAppFonts` array in the App Clip's `Info.plist`
+   - Configure a font family name for ReactivClipKit in the App Clip's `Info.plist`:
+     - Key: `ReactivClipFontFamilyName`
+     - Value: `BrandSans` (the base name of your font family)
+   - ReactivClipKit **expects three core weights** to be present for your primary family. For correct and predictable typography, you should provide:
+     - Regular → `BrandSans-Regular`
+     - Semibold → `BrandSans-SemiBold`
+     - Bold → `BrandSans-Bold`
+   - ReactivClipKit will automatically:
+     - Use your custom font throughout the Clip when all three required weights are present
+     - If a required weight is missing, it will try to substitute the closest available weight or fall back to the default font, so visual results may not exactly match your brand typography
 
 ## Recommended Integration Pattern
 
