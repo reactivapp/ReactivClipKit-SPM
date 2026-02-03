@@ -95,6 +95,26 @@ struct MyAppClip: App {
 }
 ```
 
+## Testing a Landing Page Locally
+
+When the Reactiv Dashboard is configured to send users to a landing page (for example `pages/test`), you need to run your App Clip with an **invocation URL** that matches that landing page URL.
+
+### Using Xcode (recommended)
+
+1. Open the sample project at `Examples/ReactivClipKit-Sample.xcodeproj` (or your App Clip project).
+2. Select the App Clip scheme (for the sample: `ReactivClipKit-SampleClip`).
+3. Open **Edit Scheme…** → **Run** → **Arguments** → **Environment Variables**.
+4. Add (or enable) the environment variable:
+   - Name: `_XCAppClipURL`
+   - Value: `https://<your-store-domain>/pages/test`
+5. Run the App Clip target.
+
+### Common gotchas (why you might see “Oops” / fallback UI)
+
+- The landing page (or other Clip content) may not be published yet from the Reactiv Dashboard. If nothing is published, the Clip can fall back to a generic “not found” experience.
+- The invocation URL must be a **full URL** and should match the storefront domain/path you expect (especially important for multi-store setups where the longest `storeURL` prefix is selected).
+- After Dashboard changes, you may need to fully relaunch the App Clip (stop run, run again). In some cases a second reload is needed before new content appears.
+
 ## Working with Events
 
 ReactivClipKit provides an event system that allows you to receive and respond to user interactions within your app. Events include product views, cart actions, checkout processes, and more.

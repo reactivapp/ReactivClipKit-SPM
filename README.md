@@ -127,6 +127,14 @@ Detailed guides live in the `Documentation` folder:
 - [API reference](./Documentation/API.md)
 - [FAQ](./Documentation/FAQ.md)
 
+### 🧪 Testing a Landing Page locally
+
+If the Reactiv Dashboard is configured to send users to a landing page such as `pages/test`, you can test that flow locally by running your App Clip with an invocation URL.
+
+In Xcode: **Edit Scheme…** → **Run** → **Arguments** → enable `_XCAppClipURL` and set it to a full URL like `https://<your-store-domain>/pages/test`.
+
+See: [Usage → Testing a Landing Page Locally](./Documentation/Usage.md#testing-a-landing-page-locally)
+
 ---
 
 ## 🤝 Support

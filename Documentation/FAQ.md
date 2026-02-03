@@ -34,6 +34,7 @@ A: Yes. Set up `UNUserNotificationCenterDelegate` in your AppDelegate and call `
 
 **Q: How do I receive events from ReactivClipKit?**  
 A: Use the `ReactivClipEvents` interface to access the event publisher:
+
 ```swift
 let publisher = ReactivClipEvents.publisher
 publisher.on(.productViewed) { event in
@@ -46,6 +47,7 @@ A: ReactivClipKit provides events for product views, cart actions, checkout proc
 
 **Q: How do I access data from the events?**  
 A: Events provide type-safe data through convenience properties:
+
 ```swift
 publisher.on(.cartItemAdded) { event in
     if let cartData = event.cartItemAddedData {
@@ -60,6 +62,7 @@ A: Set up event handling after ReactivClipKit is initialized, typically in your 
 
 **Q: Can I observe all events at once?**  
 A: Yes, use the `onEvent` method to subscribe to all events:
+
 ```swift
 ReactivClipEvents.publisher.onEvent { event in
     print("Received event: \(event.type.rawValue)")
@@ -69,6 +72,7 @@ ReactivClipEvents.publisher.onEvent { event in
 
 **Q: How do I unsubscribe from events?**  
 A: Call `removeAllHandlers()` on the publisher:
+
 ```swift
 ReactivClipEvents.publisher.removeAllHandlers()
 ```
@@ -80,6 +84,9 @@ A: You're likely attempting to initialize the framework multiple times. Check yo
 
 **Q: Why isn't my App Clip showing any content?**  
 A: Verify your App ID and tokens are correct, and check for initialization errors in your logs.
+
+**Q: How do I test a landing page locally (e.g. `pages/test`)?**  
+A: Run the App Clip with an invocation URL that points at the landing page URL. In Xcode, open **Edit Scheme…** → **Run** → **Arguments** → **Environment Variables**, then enable `_XCAppClipURL` and set it to a full URL like `https://<your-store-domain>/pages/test`. If you see a fallback (“Oops”) screen, confirm the landing page has been published from the Reactiv Dashboard and relaunch the App Clip.
 
 **Q: How do I debug initialization issues?**  
 A: Use proper error handling with try-catch and log any errors from initialization. Look for specific error types like `missingAppIdentifier` to pinpoint the issue.
@@ -95,4 +102,4 @@ A: Ensure that you've set up event observers after ReactivClipKit is fully initi
 
 ---
 
-For additional support, contact us at support@reactivapp.com 
+For additional support, contact us at support@reactivapp.com
