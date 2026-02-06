@@ -202,3 +202,18 @@ Optional `initializationOptions` dictionary (same for both init APIs):
 | Key             | Type   | Default | Description                                                                  |
 | --------------- | ------ | ------- | ---------------------------------------------------------------------------- |
 | `CARTLESS_MODE` | `Bool` | `false` | Disables cart functionality (hides cart button; toast no longer opens cart). |
+
+### Example: Enabling Cartless Mode
+
+```swift
+try ReactivClipInitialize(
+    appIdentifier: "your-app-id",
+    reactivEventsToken: "your-events-token",
+    appStoreID: "123456789",
+    parentBundleIdentifier: "com.yourapp.bundle",
+    sentrySDK: SentrySDK.self,
+    initializationOptions: [
+        "CARTLESS_MODE": true
+    ]
+)
+```
