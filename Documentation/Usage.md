@@ -194,3 +194,11 @@ try ReactivClipInitializeMultiStore(
 ```
 
 `ReactivClipKit` selects the descriptor whose `storeURL` is the longest prefix of the App Clip invocation URL. If no match is found the first descriptor in the array is used as a fallback.
+
+## Initialization options
+
+Optional `initializationOptions` dictionary (same for both init APIs):
+
+| Key             | Type   | Default | Description                                                                  |
+| --------------- | ------ | ------- | ---------------------------------------------------------------------------- |
+| `CARTLESS_MODE` | `Bool` | `false` | Disables cart functionality (hides cart button; toast no longer opens cart). |
