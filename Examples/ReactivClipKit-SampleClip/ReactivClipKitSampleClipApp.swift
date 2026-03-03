@@ -8,44 +8,28 @@
 import ReactivClipKit
 import SwiftUI
 
-// MARK: - App Entry Point
-
-/// ReactivClipKitSampleClipApp
-///
-/// Main entry point for the App Clip demonstration of ReactivClipKit.
-/// This sample shows how to properly initialize and configure the ReactivClipKit
-/// SDK within an App Clip context.
+/// Main entry point for the App Clip. Initializes ReactivClipKit and sets up analytics event observation.
 @main
 struct ReactivClipKitSampleClipApp: App {
-    // MARK: - Properties
-    
-    /// Application delegate for handling Firebase initialization and notifications
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    // MARK: - Initialization
-    
-    /// Initializes the App Clip and configures ReactivClipKit
+
     init() {
         configureReactivClipKit()
         setupAnalytics()
     }
-    
-    // MARK: - Scene Configuration
-    
+
     var body: some Scene {
         WindowGroup {
             ReactivClipView()
         }
     }
-    
+
     // MARK: - Private Methods
-    
-    /// Configures the ReactivClipKit SDK with required parameters
+
     private func configureReactivClipKit() {
         do {
-            // -------------------------------------------------------------
-            // Multi-Store Initialization Example 
-            // -------------------------------------------------------------
+            // Multi-store initialization example:
+            //
             // let stores: [StoreDescriptor] = [
             //     StoreDescriptor(uuid: "intl-uuid", storeURL: "https://domain.com",    eventsToken: "token-intl"),
             //     StoreDescriptor(uuid: "ca-uuid",   storeURL: "https://domain.com/ca", eventsToken: "token-ca"),
@@ -55,41 +39,27 @@ struct ReactivClipKitSampleClipApp: App {
             //
             // try ReactivClipInitializeMultiStore(
             //     stores: stores,
-            //     appStoreID: "", // Your App Store ID
+            //     appStoreID: "",
             //     parentBundleIdentifier: "com.yourapp.bundleid",
-            //     sentrySDK: nil // Pass SentrySDK.self if using Sentry
+            //     sentrySDK: nil
             // )
-            // -------------------------------------------------------------
-            
+
             try ReactivClipInitialize(
-                appIdentifier: "", // Your app identifier from Reactiv dashboard
-                reactivEventsToken: "", // Your Reactiv events token
-                appStoreID: "", // Your App Store ID
+                appIdentifier: "",              // Your app identifier from Reactiv dashboard
+                reactivEventsToken: "",          // Your Reactiv events token
+                appStoreID: "",                  // Your App Store ID
                 parentBundleIdentifier: "com.yourapp.bundleid",
-                sentrySDK: nil // Pass SentrySDK.self from the Sentry framework
+                sentrySDK: nil                   // Pass SentrySDK.self from the Sentry framework
             )
-            print("[ReactivClipKitSampleClipApp] ReactivClipKit initialized successfully")
         } catch {
-            print("[ERROR] Failed to initialize ReactivClipKit: \(error)")
+            print("[ReactivClipKit] Initialization failed: \(error)")
         }
     }
-    
-    /// Sets up event tracking for analytics
+
+    /// Waits for ReactivClipKit to finish initializing, then starts event observation.
     private func setupAnalytics() {
-        // Wait a moment to ensure ReactivClipKit is fully initialized
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            // Set up event tracking with our analytics manager
             SampleAnalyticsManager.shared.setupEventObserving()
-            
-            print("[ReactivClipKitSampleClipApp] Analytics setup complete")
-            print("")
-            print("🔍 Events will now be logged when they occur:")
-            print("- When a product is viewed")
-            print("- When items are added to cart")
-            print("- When checkout completes")
-            print("- When screens are viewed")
-            print("- And other purchase flow events")
-            print("")
         }
     }
 }

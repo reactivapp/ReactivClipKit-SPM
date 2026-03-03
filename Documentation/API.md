@@ -5,11 +5,12 @@
 ```swift
 // Initialize the framework (throws on error)
 try ReactivClipInitialize(
-    appIdentifier: String,          // Required: Your Reactiv App ID
-    reactivEventsToken: String,     // Required: Your analytics token
-    appStoreID: String,            // Required: App Store Connect ID
-    parentBundleIdentifier: String, // Required: Parent app's bundle ID
-    sentrySDK: AnyClass? = nil     // Sentry SDK class for error reporting
+    appIdentifier: String,                      // Required: Your Reactiv App ID
+    reactivEventsToken: String,                 // Required: Your analytics token
+    appStoreID: String,                         // Required: App Store Connect ID
+    parentBundleIdentifier: String,             // Required: Parent app's bundle ID
+    sentrySDK: AnyClass? = nil,                 // Sentry SDK class for error reporting
+    initializationOptions: [String: Any]? = nil // Optional: See Initialization Options below
 )
 ```
 
@@ -30,9 +31,16 @@ ReactivClipView()
 ## Notification Handling
 
 ```swift
-// Extension on NotificationCenter for handling notification taps
-// Call this from UNUserNotificationCenterDelegate's didReceive method
+// Forward notification taps to ReactivClipKit (call from UNUserNotificationCenterDelegate's didReceive)
 NotificationCenter.default.postNotificationTapped(response: UNNotificationResponse)
+```
+
+## Push Token Forwarding
+
+```swift
+// Forward the APNs device token to ReactivClipKit for push notification registration
+// Call from application(_:didRegisterForRemoteNotificationsWithDeviceToken:)
+NotificationCenter.default.postDeviceTokenReceived(deviceToken: Data)
 ```
 
 ## Event Handling
@@ -89,8 +97,15 @@ enum ReactivClipEventType: String {
 
     // Collection events
     case collectionViewed
-}
 
+    // UI interaction events
+    case buttonTapped
+    case searchFocus
+    case searchApplied
+
+    // Custom events
+    case custom
+}
 ```
 
 ### Accessing Typed Event Data
@@ -132,14 +147,48 @@ enum ReactivClipInitError: Error {
 }
 ```
 
-### Multi-Store initializer
+## Initialization Options
+
+Both initializers accept an optional `initializationOptions` dictionary:
+
+| Key             | Type   | Default | Description                                                 |
+| --------------- | ------ | ------- | ----------------------------------------------------------- |
+| `CARTLESS_MODE` | `Bool` | `false` | Disables cart functionality (hides cart button; toast no longer opens cart) |
+
+```swift
+try ReactivClipInitialize(
+    appIdentifier: "your-app-id",
+    reactivEventsToken: "your-events-token",
+    appStoreID: "123456789",
+    parentBundleIdentifier: "com.yourapp.bundle",
+    sentrySDK: SentrySDK.self,
+    initializationOptions: [
+        "CARTLESS_MODE": true
+    ]
+)
+```
+
+## Multi-Store Initializer
 
 ```swift
 // Initialize the framework for multiple storefronts (throws on error)
 try ReactivClipInitializeMultiStore(
-    stores: [StoreDescriptor],         // Required: descriptors for each storefront
-    appStoreID: String,               // Required: App Store Connect ID
-    parentBundleIdentifier: String,   // Required: Parent app's bundle ID
-    sentrySDK: AnyClass? = nil        // Sentry SDK class for error reporting
+    stores: [StoreDescriptor],                  // Required: descriptors for each storefront
+    appStoreID: String,                         // Required: App Store Connect ID
+    parentBundleIdentifier: String,             // Required: Parent app's bundle ID
+    sentrySDK: AnyClass? = nil,                 // Sentry SDK class for error reporting
+    initializationOptions: [String: Any]? = nil // Optional: See Initialization Options above
 )
 ```
+
+### StoreDescriptor
+
+```swift
+public struct StoreDescriptor {
+    public let uuid: String       // Store UUID from Reactiv Dashboard
+    public let storeURL: String   // Store URL (e.g., "https://domain.com/ca")
+    public let eventsToken: String // Analytics token for this store
+}
+```
+
+The framework selects the descriptor whose `storeURL` is the longest prefix of the App Clip invocation URL. If no match is found, the first descriptor is used as a fallback.

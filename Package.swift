@@ -1,7 +1,7 @@
 // swift-tools-version:5.7
 import PackageDescription
 
-// Version: 1.0.2504231 (Major.Minor.DateBuild format)
+// Version: 2.2.2602101 (Major.Minor.DateBuild format)
 let package = Package(
     name: "ReactivClipKit",
     platforms: [

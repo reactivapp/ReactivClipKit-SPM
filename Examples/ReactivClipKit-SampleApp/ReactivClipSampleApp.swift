@@ -7,15 +7,9 @@
 
 import SwiftUI
 
-/// ReactivClipKit Sample Application
-///
-/// This application serves as the host app required for the App Clip demonstration.
-/// It does not contain any specific ReactivClipKit setup as that's handled in the App Clip target.
-/// The main purpose of this application is to provide the container for the App Clip.
+/// Host app for the App Clip target. ReactivClipKit setup lives in the App Clip, not here.
 @main
 struct ReactivClipSampleApp: App {
-    // MARK: - Body
-    
     var body: some Scene {
         WindowGroup {
             ContentView()

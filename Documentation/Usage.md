@@ -39,10 +39,15 @@ import UserNotifications
 
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Set up notification handling for ReactivClipKit
         UNUserNotificationCenter.current().delegate = self
+        application.registerForRemoteNotifications()
 
         return true
+    }
+
+    // REQUIRED: Forward the APNs device token to ReactivClipKit
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        NotificationCenter.default.postDeviceTokenReceived(deviceToken: deviceToken)
     }
 
     // REQUIRED: Forward notification taps to ReactivClipKit
@@ -51,7 +56,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        // This notifies ReactivClipKit about notification interactions
         NotificationCenter.default.postNotificationTapped(response: response)
         completionHandler()
     }
