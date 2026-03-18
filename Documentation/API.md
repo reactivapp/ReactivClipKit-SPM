@@ -38,7 +38,9 @@ NotificationCenter.default.postNotificationTapped(response: UNNotificationRespon
 ## Push Token Forwarding
 
 ```swift
-// Forward the APNs device token to ReactivClipKit for push notification registration
+// ReactivClipKit does not call application.registerForRemoteNotifications() for you.
+// Required for remote notifications functionality.
+// Forward the APNs device token to ReactivClipKit for push notification registration.
 // Call from application(_:didRegisterForRemoteNotificationsWithDeviceToken:)
 NotificationCenter.default.postDeviceTokenReceived(deviceToken: Data)
 ```

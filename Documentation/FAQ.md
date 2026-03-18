@@ -28,7 +28,10 @@ A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleI
 A: UI customization is managed through the Reactiv Dashboard.
 
 **Q: Do I need to handle push notifications for ReactivClipKit?**
-A: Yes. Your AppDelegate needs three things: (1) set `UNUserNotificationCenter.current().delegate = self`, (2) call `application.registerForRemoteNotifications()` in `didFinishLaunchingWithOptions`, and (3) forward the device token via `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)` in `didRegisterForRemoteNotificationsWithDeviceToken`. Also forward notification taps via `NotificationCenter.default.postNotificationTapped(response:)`. See the [Usage Guide](./Usage.md) for the full AppDelegate example.
+A: Yes. For remote notifications functionality, this setup is required. Your AppDelegate needs three things: (1) set `UNUserNotificationCenter.current().delegate = self`, (2) call `application.registerForRemoteNotifications()` in `didFinishLaunchingWithOptions`, and (3) forward the device token via `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)` in `didRegisterForRemoteNotificationsWithDeviceToken`. Also forward notification taps via `NotificationCenter.default.postNotificationTapped(response:)`. See the [Usage Guide](./Usage.md) for the full AppDelegate example.
+
+**Q: Does ReactivClipKit call `application.registerForRemoteNotifications()` automatically?**
+A: No. You must call `application.registerForRemoteNotifications()` in your App Clip host app (typically in `didFinishLaunchingWithOptions`).
 
 **Q: What are initialization options?**
 A: Both initializers accept an optional `initializationOptions` dictionary for advanced configuration. Currently supported: `CARTLESS_MODE` (Bool, default `false`) disables the cart button and related toast behavior. See the [API Reference](./API.md#initialization-options) for details.
@@ -98,7 +101,7 @@ A: Use proper error handling with try-catch and log any errors from initializati
 A: Call `ReactivClipIsInitialized()` which returns a boolean indicating status.
 
 **Q: Why aren't push notifications working?**
-A: Verify all three AppDelegate requirements: (1) `UNUserNotificationCenter.current().delegate = self`, (2) `application.registerForRemoteNotifications()`, and (3) `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)` in the device token callback. Missing any of these will prevent push notifications from being registered.
+A: Verify all three AppDelegate requirements: (1) `UNUserNotificationCenter.current().delegate = self`, (2) `application.registerForRemoteNotifications()`, and (3) `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)` in the device token callback. Missing any of these will prevent remote notifications functionality from working.
 
 **Q: Why aren't notification taps being tracked?**
 A: Make sure your AppDelegate calls `NotificationCenter.default.postNotificationTapped(response:)` in the `userNotificationCenter(_:didReceive:withCompletionHandler:)` method.

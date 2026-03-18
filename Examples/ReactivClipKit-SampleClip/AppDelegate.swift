@@ -20,10 +20,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     // MARK: - Push Token Forwarding
 
-    /// Forwards the APNs device token to ReactivClipKit. Required for push notification delivery.
+    /// Required for remote notifications: forwards APNs device token to ReactivClipKit.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Available in a future release:
-        // NotificationCenter.default.postDeviceTokenReceived(deviceToken: deviceToken)
+        NotificationCenter.default.postDeviceTokenReceived(deviceToken: deviceToken)
     }
 
     // MARK: - Notification Handling

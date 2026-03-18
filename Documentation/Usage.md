@@ -29,6 +29,9 @@ Before integrating ReactivClipKit, ensure you have:
 
 ## Recommended Integration Pattern
 
+For remote notifications functionality, forwarding the APNs device token to ReactivClipKit is required.
+`ReactivClipKit` does not call `application.registerForRemoteNotifications()` automatically, so your App Clip must call it in `didFinishLaunchingWithOptions`.
+
 ### 1. Create AppDelegate.swift for Notification Handling
 
 ```swift

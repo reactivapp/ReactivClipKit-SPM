@@ -83,6 +83,16 @@ The framework chooses the descriptor whose `storeURL` is the longest prefix of t
 ReactivClipView()
 ```
 
+### Remote notifications requirement
+
+For remote notifications functionality, your App Clip integration must:
+
+1. Call `application.registerForRemoteNotifications()` yourself. `ReactivClipKit` does not call this API automatically.
+2. Forward APNs device token in `application(_:didRegisterForRemoteNotificationsWithDeviceToken:)` using `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)`
+3. Forward notification taps using `NotificationCenter.default.postNotificationTapped(response:)`
+
+See the full `AppDelegate` example in [Usage](./Documentation/Usage.md#recommended-integration-pattern).
+
 ---
 
 ## 📹 Video tutorial
