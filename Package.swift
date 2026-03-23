@@ -1,7 +1,7 @@
 // swift-tools-version:5.7
 import PackageDescription
 
-// Version: 2.2.2602101 (Major.Minor.DateBuild format)
+// Version: 1.3.2603231 (Major.Minor.DateBuild format)
 let package = Package(
     name: "ReactivClipKit",
     platforms: [
@@ -16,8 +16,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ReactivClipKit",
-            url: "https://cdn.reactivapp.com/downloads/reactiv-clip-kit/ReactivClipKit-2.2.2603121.xcframework.zip",
-            checksum: "60aba55b9a3b01cd603ee7c11316a17487f1ea6ae60936012996838063c8e9f3"
+            url: "https://cdn.reactivapp.com/downloads/reactiv-clip-kit/ReactivClipKit-1.3.2603231.xcframework.zip",
+            checksum: "6368bb7725cf37a1ae7d328c8bd548dc6065594298b6c1dc8e4c1f77aeb414cc"
         )
     ]
 ) 
