@@ -9,7 +9,6 @@ try ReactivClipInitialize(
     reactivEventsToken: String,                 // Required: Your analytics token
     appStoreID: String,                         // Required: App Store Connect ID
     parentBundleIdentifier: String,             // Required: Parent app's bundle ID
-    sentrySDK: AnyClass? = nil,                 // Sentry SDK class for error reporting
     initializationOptions: [String: Any]? = nil // Optional: See Initialization Options below
 )
 ```
@@ -24,15 +23,65 @@ let isInitialized: Bool = ReactivClipIsInitialized()
 ## Main View Component
 
 ```swift
-// Use as the main view in your App Clip
+// Use as the main view in your App Clip (standalone integration)
 ReactivClipView()
 ```
 
-## Notification Handling
+## Full App Host Container (2.3+)
+
+For embedding ClipKit in an existing iOS SwiftUI app — wraps your host content and presents the Clip experience as a full-screen cover when a Reactiv URL or push arrives. Dismiss signals observed automatically.
 
 ```swift
-// Forward notification taps to ReactivClipKit (call from UNUserNotificationCenterDelegate's didReceive)
+public struct ReactivClipHost<HostContent: View>: View {
+    public init(@ViewBuilder hostContent: @escaping () -> HostContent)
+}
+
+// Usage:
+ReactivClipHost {
+    MyHostHomeScreen()
+}
+```
+
+Behavior:
+
+- Renders `hostContent()` by default
+- Observes valid invocation URLs and Reactiv push taps → presents `ReactivClipView()` as `.fullScreenCover`
+- Observes `ReactivClipCommands.publisher` for `.clipDismissRequested` → dismisses the cover
+- Drains cold-start URL/push buffers on first appear — no lost invocations during app launch
+- Only valid if `REACTIV_FULL_APP_MODE: true` was set at init
+
+See [Full App Integration](./FullAppIntegration.md) for complete setup.
+
+## Invocation URL Forwarding (2.3+)
+
+Forward a URL to ClipKit's invocation pipeline. Validates scheme and host; non-matching URLs silently dropped with a warning log.
+
+```swift
+// Accepts only https://appclip.apple.com/... URLs; everything else silently dropped
+NotificationCenter.default.forwardInvocationURL(_ url: URL)
+```
+
+You typically don't call this yourself — `ReactivClipHost` calls it internally for URLs delivered via `.onOpenURL` / `.onContinueUserActivity`. Direct calls are useful for manual integration (advanced).
+
+## Notification Handling
+
+### Standalone App Clip integration
+
+```swift
+// Forward notification taps (call from UNUserNotificationCenterDelegate's didReceive)
 NotificationCenter.default.postNotificationTapped(response: UNNotificationResponse)
+```
+
+### Full App integration (2.3+)
+
+```swift
+// Inspects the push payload for Reactiv-owned notifications:
+// - Reactiv push: routed into ClipKit; ReactivClipHost presents the Clip
+// - Anything else: ifNotReactiv runs so your app handles it
+NotificationCenter.default.handleReactivNotificationTap(
+    response: UNNotificationResponse,
+    ifNotReactiv: @escaping () -> Void = {}
+)
 ```
 
 ## Push Token Forwarding
@@ -44,6 +93,41 @@ NotificationCenter.default.postNotificationTapped(response: UNNotificationRespon
 // Call from application(_:didRegisterForRemoteNotificationsWithDeviceToken:)
 NotificationCenter.default.postDeviceTokenReceived(deviceToken: Data)
 ```
+
+## Commands Publisher (2.3+)
+
+Control-signal stream — separate from the analytics events publisher. Used for host apps to observe presentation control signals like dismiss.
+
+```swift
+import Combine
+
+public enum ReactivClipCommands {
+    public static var publisher: AnyPublisher<ReactivClipCommand, Never> { get }
+}
+
+public struct ReactivClipCommand: Equatable {
+    public let type: ReactivClipCommandType
+    public let timestamp: Date
+}
+
+public enum ReactivClipCommandType: String, CaseIterable, Codable {
+    case clipDismissRequested
+}
+```
+
+Example — react to dismiss yourself (only if you opted out of `ReactivClipHost`, which observes this internally):
+
+```swift
+let subscription = ReactivClipCommands.publisher
+    .filter { $0.type == .clipDismissRequested }
+    .sink { _ in
+        // User tapped the dismiss chevron in the Clip's toolbar
+    }
+```
+
+Delivered on the main queue.
+
+---
 
 ## Event Handling
 
@@ -153,9 +237,10 @@ enum ReactivClipInitError: Error {
 
 Both initializers accept an optional `initializationOptions` dictionary:
 
-| Key             | Type   | Default | Description                                                 |
-| --------------- | ------ | ------- | ----------------------------------------------------------- |
-| `CARTLESS_MODE` | `Bool` | `false` | Disables cart functionality (hides cart button; toast no longer opens cart) |
+| Key                     | Type   | Default | Description                                                                                                            |
+| ----------------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `CARTLESS_MODE`         | `Bool` | `false` | Disables cart functionality (hides cart button; toast no longer opens cart)                                            |
+| `REACTIV_FULL_APP_MODE` | `Bool` | `false` | Set to `true` when embedding ClipKit in an existing full iOS app. See [Full App Integration](./FullAppIntegration.md). |
 
 ```swift
 try ReactivClipInitialize(
@@ -163,7 +248,6 @@ try ReactivClipInitialize(
     reactivEventsToken: "your-events-token",
     appStoreID: "123456789",
     parentBundleIdentifier: "com.yourapp.bundle",
-    sentrySDK: SentrySDK.self,
     initializationOptions: [
         "CARTLESS_MODE": true
     ]
@@ -178,7 +262,6 @@ try ReactivClipInitializeMultiStore(
     stores: [StoreDescriptor],                  // Required: descriptors for each storefront
     appStoreID: String,                         // Required: App Store Connect ID
     parentBundleIdentifier: String,             // Required: Parent app's bundle ID
-    sentrySDK: AnyClass? = nil,                 // Sentry SDK class for error reporting
     initializationOptions: [String: Any]? = nil // Optional: See Initialization Options above
 )
 ```

@@ -32,26 +32,10 @@ This video covers the entire integration process from setup to implementation.
 
 For detailed written instructions, see the [Usage Guide](./Usage.md).
 
-## Required Dependencies
-
-### Sentry
-ReactivClipKit integrates with Sentry for error reporting:
-- Add the Sentry package to your App Clip target
-- Pass `SentrySDK.self` during initialization to enable error reporting
-- No manual Sentry configuration required
-
-## Integration Details
-
-ReactivClipKit integrates with:
-
-- Sentry (required) - for error reporting
-- App Store Connect - for app distribution
-
-### Best Practices
+## Best Practices
 
 - Initialize ReactivClipKit in the SwiftUI App's `init` method, not in AppDelegate
 - Use proper error handling with try-catch blocks
-- Ensure Sentry package is added to your App Clip target
 - Always check initialization status with `ReactivClipIsInitialized()`
 - Set up event handlers after initialization is complete
 

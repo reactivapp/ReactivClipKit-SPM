@@ -1,10 +1,5 @@
 # ReactivClipKit FAQ
 
-## Dependencies
-
-**Q: Do I need to install Sentry?**  
-A: Yes. Sentry is required for error reporting. Add the Sentry package to your App Clip target, but you don't need to initialize it - ReactivClipKit handles this automatically.
-
 ## Initialization
 
 **Q: What's the right way to initialize ReactivClipKit?**  
@@ -18,11 +13,8 @@ A: No. Subsequent initialization attempts will throw a `multipleInitialization` 
 
 ## Features
 
-**Q: Do I need to manually initialize Sentry?**  
-A: No. ReactivClipKit handles all Sentry configuration internally when you pass `SentrySDK.self`. Don't call `SentrySDK.start()` yourself.
-
 **Q: What's the minimum required setup?**  
-A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleIdentifier`. Sentry is optional but recommended.
+A: Valid `appIdentifier`, `reactivEventsToken`, `appStoreID`, and `parentBundleIdentifier`.
 
 **Q: How to customize the UI?**  
 A: UI customization is managed through the Reactiv Dashboard.
@@ -34,7 +26,30 @@ A: Yes. For remote notifications functionality, this setup is required. Your App
 A: No. You must call `application.registerForRemoteNotifications()` in your App Clip host app (typically in `didFinishLaunchingWithOptions`).
 
 **Q: What are initialization options?**
-A: Both initializers accept an optional `initializationOptions` dictionary for advanced configuration. Currently supported: `CARTLESS_MODE` (Bool, default `false`) disables the cart button and related toast behavior. See the [API Reference](./API.md#initialization-options) for details.
+A: Both initializers accept an optional `initializationOptions` dictionary for advanced configuration. Current keys: `CARTLESS_MODE` (Bool, disables cart), `REACTIV_FULL_APP_MODE` (Bool, set to `true` when embedding in a full iOS app — see [Full App Integration](./FullAppIntegration.md)). See the [API Reference](./API.md#initialization-options) for details.
+
+## Full App Integration (2.3+)
+
+**Q: Can I embed ClipKit into my existing iOS app?**
+A: Yes, starting with ClipKit **2.3**. Set `"REACTIV_FULL_APP_MODE": true` in `initializationOptions` and wrap your root view in `ReactivClipHost { MyHostHomeScreen() }`. When a Reactiv-owned URL or push notification arrives, ClipKit presents the commerce experience as a full-screen cover over your host content. See the full guide: [Full App Integration](./FullAppIntegration.md).
+
+**Q: Does the host app need to write `.onOpenURL` or `.onContinueUserActivity`?**
+A: No — `ReactivClipHost` uses those modifiers internally. Any URL delivered to the scene is validated (only `https://appclip.apple.com/...` accepted) and routed into ClipKit automatically.
+
+**Q: Does the host app need AppDelegate URL methods (`application(_:open:)`, `application(_:continue:)`)?**
+A: No. In SwiftUI apps, those would fire in parallel with SwiftUI's modifiers and double-handle. SwiftUI's `.onOpenURL` — which `ReactivClipHost` uses internally — is the idiomatic hook.
+
+**Q: What happens if the user taps a Reactiv push when the host app is in a different screen?**
+A: `ReactivClipHost` uses `fullScreenCover` to present the Clip — your host view tree stays mounted beneath. When the user dismisses, they return to the exact screen they were on.
+
+**Q: What URL format triggers ClipKit from the host?**
+A: `https://appclip.apple.com/id?p=<your-clip-bundle>&action=<action>[&<param>=<value>]`.
+
+**Q: What if a user taps a merchant-domain URL (App Clip Experience URL) instead of the appclip.apple.com URL?**
+A: ClipKit only routes `appclip.apple.com` URLs automatically. Merchant-domain URLs (e.g., `https://shop.yourcompany.com/products/foo`) belong to your app's own navigation. If you want ClipKit to handle a specific merchant URL, translate it to the `appclip.apple.com` equivalent in your own `.onOpenURL` handler and call `NotificationCenter.default.forwardInvocationURL(translatedURL)` explicitly.
+
+**Q: How do I present the Clip differently — as a sheet instead of full screen?**
+A: Use the advanced manual integration pattern (opt out of `ReactivClipHost`). Wire `.onOpenURL` / `.onContinueUserActivity` yourself, forward via `NotificationCenter.default.forwardInvocationURL(url)`, hold a `@State var showClipKit: Bool`, and present `ReactivClipView()` via whatever SwiftUI modifier fits — `.sheet`, `.navigationDestination`, custom overlay. See [Full App Integration — Advanced](./FullAppIntegration.md#advanced-opt-out-of-reactivcliphost).
 
 ## Events
 

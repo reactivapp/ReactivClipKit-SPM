@@ -1,19 +1,16 @@
 # ReactivClipKit Usage Guide
 
+> **This guide covers standalone App Clip integration.** If you're embedding ClipKit into an existing iOS full app (main app + Clip experience inside it), see **[Full App Integration](./FullAppIntegration.md)** instead.
+
 ## Prerequisites
 
 Before integrating ReactivClipKit, ensure you have:
 
-1. **Sentry Package**
-
-   - Add the Sentry package to your App Clip target
-   - Pass the Sentry SDK class to ReactivClipKit for error reporting
-
-2. **App Clip Configuration**
+1. **App Clip Configuration**
 
    - Add `NSAppClipRequestEphemeralUserNotification` key set to `true` in your App Clip's Info.plist to enable notification permissions
 
-3. **Custom Fonts (Optional, Experimental)**
+2. **Custom Fonts (Optional, Experimental)**
    - Add your custom font files (`.ttf` / `.otf`) to the **App Clip target**
    - Add each font filename to the `UIAppFonts` array in the App Clip's `Info.plist`
    - Configure a font family name for ReactivClipKit in the App Clip's `Info.plist`:
@@ -71,7 +68,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 // MyAppClip.swift
 import SwiftUI
 import ReactivClipKit
-import Sentry
 
 @main
 struct MyAppClip: App {
@@ -85,8 +81,7 @@ struct MyAppClip: App {
                 appIdentifier: "your-app-id",
                 reactivEventsToken: "your-events-token",
                 appStoreID: "123456789",
-                parentBundleIdentifier: "com.yourapp.bundle",
-                sentrySDK: SentrySDK.self
+                parentBundleIdentifier: "com.yourapp.bundle"
             )
         } catch {
             print("ReactivClipKit initialization failed: \(error)")
@@ -195,8 +190,7 @@ let stores: [StoreDescriptor] = [
 try ReactivClipInitializeMultiStore(
     stores: stores,
     appStoreID: "123456789",
-    parentBundleIdentifier: "com.yourapp.bundle",
-    sentrySDK: SentrySDK.self
+    parentBundleIdentifier: "com.yourapp.bundle"
 )
 ```
 
@@ -218,7 +212,6 @@ try ReactivClipInitialize(
     reactivEventsToken: "your-events-token",
     appStoreID: "123456789",
     parentBundleIdentifier: "com.yourapp.bundle",
-    sentrySDK: SentrySDK.self,
     initializationOptions: [
         "CARTLESS_MODE": true
     ]
