@@ -85,11 +85,12 @@ Pin the Full App integration via:
 .package(url: "https://github.com/reactivapp/ReactivClipKit-SPM.git", from: "2.3.0")
 ```
 
-Three integration touchpoints:
+Four integration touchpoints:
 
 1. **Initialize** with `"REACTIV_FULL_APP_MODE": true` in `initializationOptions`
 2. **Wrap your root view** in `ReactivClipHost { MyHostHomeScreen() }`
-3. **AppDelegate** forwards push taps via `NotificationCenter.default.handleReactivNotificationTap(response:ifNotReactiv:)`
+3. **Forward the APNs device token** in `application(_:didRegisterForRemoteNotificationsWithDeviceToken:)` via `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)`
+4. **Forward push taps** in `userNotificationCenter(_:didReceive:withCompletionHandler:)` via `NotificationCenter.default.handleReactivNotificationTap(response:ifNotReactiv:)`
 
 ```swift
 @main
@@ -116,7 +117,7 @@ struct MyHostApp: App {
 
 URL forwarding, presentation, dismissal, and cold-start buffering are all handled by `ReactivClipHost` internally — you don't write `.onOpenURL` or `.onContinueUserActivity` yourself.
 
-**See the full guide:** [Documentation/FullAppIntegration.md](./Documentation/FullAppIntegration.md) — prerequisites, Associated Domains setup, push payload contract, invocation URL format, production flow, troubleshooting.
+**See the full guide:** [Documentation/FullAppIntegration.md](./Documentation/FullAppIntegration.md) — prerequisites, AppDelegate hooks, troubleshooting.
 
 ---
 
