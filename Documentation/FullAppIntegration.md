@@ -51,7 +51,7 @@ Four values, issued by the Reactiv team via the dashboard:
 | `reactivAppIdentifier`   | UUID of your Reactiv app record                                |
 | `reactivEventsToken`     | Bearer token (JWT) for events + push APIs                      |
 | `appStoreID`             | App Store Connect numeric app ID (used for store links)        |
-| `parentBundleIdentifier` | Your iOS app's bundle identifier (e.g., `com.yourcompany.app`) |
+| `parentBundleIdentifier` | Your host iOS app's own bundle identifier (e.g., `com.yourcompany.app`) |
 
 If you don't have these, request them from your Reactiv integration contact before starting integration.
 
@@ -118,11 +118,13 @@ var body: some Scene {
 
 `ReactivClipHost` owns URL forwarding, push presentation via `fullScreenCover`, dismiss handling, and cold-start buffering. Placement: anywhere — scene root preferred for robustness.
 
-**Do not** add your own `.onOpenURL` / `.onContinueUserActivity` at the scene level, or `application(_:open:)` / `application(_:continue:)` in your AppDelegate. All would double-fire.
+**Do not** add your own `.onOpenURL` / `.onContinueUserActivity` at the scene level — they'd double-fire with `ReactivClipHost`'s internal handlers.
+
+**Do** add `application(_:continue:_:restorationHandler:)` to your `AppDelegate` (see Step 3). This is required when your app uses third-party SDKs that intercept Universal Links — see [Why we forward explicitly](#why-we-forward-explicitly).
 
 ### Step 3 — AppDelegate hooks
 
-Add two forwarding hooks to your existing `AppDelegate`. ClipKit assumes your app already sets `UNUserNotificationCenter.current().delegate`, requests permission, and calls `registerForRemoteNotifications` — don't duplicate.
+Add three forwarding hooks to your existing `AppDelegate`. ClipKit assumes your app already sets `UNUserNotificationCenter.current().delegate`, requests permission, and calls `registerForRemoteNotifications` — don't duplicate.
 
 ```swift
 import ReactivClipKit
@@ -150,6 +152,20 @@ extension AppDelegate {
     }
     completionHandler()
   }
+
+  // Forward `appclip.apple.com` Universal Links to ClipKit. See "Why we forward explicitly" below.
+  func application(
+    _ application: UIApplication,
+    continue userActivity: NSUserActivity,
+    restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
+  ) -> Bool {
+    if let url = userActivity.webpageURL,
+       url.host?.lowercased() == "appclip.apple.com" {
+      NotificationCenter.default.forwardInvocationURL(url)
+      return true
+    }
+    return false
+  }
 }
 ```
 
@@ -159,7 +175,13 @@ extension AppDelegate {
 - `userNotificationCenter(_:didReceive:…)`: forward notification taps via `NotificationCenter.default.handleReactivNotificationTap(response:ifNotReactiv:)`. ClipKit inspects the payload for a `reactiv_kind` key:
   - Present → it's a Reactiv push; ClipKit routes the payload into its pipeline and `ReactivClipHost` presents the Clip
   - Absent → the `ifNotReactiv` closure runs. Route to your app's own push handlers here, or leave empty
-- `userNotificationCenter(_:willPresent:…)`: decide how notifications display when your app is foreground. `[.banner, .sound, .list]` shows a standard banner. Customize as your app prefers.
+- `application(_:continue:_:restorationHandler:)`: forward `appclip.apple.com` Universal Links to ClipKit. Returning `true` for Reactiv URLs prevents other handlers from also processing them.
+
+#### Why we forward explicitly
+
+`ReactivClipHost` attaches its own `.onContinueUserActivity` SwiftUI modifier, but this modifier only fires if no other code in the host has already consumed the activity. Many third-party SDKs (Branch, OneSignal, Firebase Dynamic Links, Klaviyo, etc.) method-swizzle `application(_:continue:)` at runtime and consume Universal Links before SwiftUI's modifier runs. Forwarding `appclip.apple.com` URLs explicitly from your `AppDelegate` guarantees ClipKit receives them regardless of what other SDKs are doing in your stack.
+
+If your host app has no third-party URL-handling SDKs, the SwiftUI path alone suffices and you can omit this method. When in doubt, add it — it's harmless when nothing else is competing.
 
 ---
 
@@ -203,7 +225,7 @@ struct MyHostApp: App {
 
 **`MyHostHomeScreen.swift`:** your own view — whatever your app normally renders. Not shown; it's your code.
 
-That's it. Three integration touchpoints. Everything else — URL delivery, push routing, presentation, dismissal, cold-start buffering, double-fire prevention — is inside ClipKit.
+That's it. Five integration touchpoints (init + wrap + three AppDelegate hooks). Everything else — URL delivery, push routing, presentation, dismissal, cold-start buffering, double-fire prevention — is inside ClipKit.
 
 ---
 
@@ -301,6 +323,28 @@ ReactivClipHost { MyHostHomeScreen() }
 
 ---
 
+## Local testing
+
+### Prerequisite
+
+Your parent app and its App Clip must be published on the App Store. Use the same bundle IDs in your local build.
+
+### Steps
+
+1. Build and run on a physical iPhone via Xcode.
+2. From Notes or Messages, tap:
+   ```
+   https://appclip.apple.com/id?p=<your-clip-bundle-id>&action=home
+   ```
+
+### Expected outcome
+
+The host app foregrounds and presents the Clip experience as a full-screen cover. Dismiss chevron returns to host content.
+
+If it doesn't work, see [Troubleshooting](#troubleshooting).
+
+---
+
 ## Troubleshooting
 
 **Clip never appears after a push tap**
@@ -311,9 +355,9 @@ ReactivClipHost { MyHostHomeScreen() }
 
 **Clip never appears after a universal link tap**
 
-- Confirm `applinks:appclip.apple.com` is in Associated Domains entitlement.
-- Confirm your Clip bundle is registered under your parent app in App Store Connect. Apple's AASA is populated from that registration.
+- Confirm your Clip bundle is registered under your parent app in App Store Connect. Apple's AASA at `appclip.apple.com` is populated from that registration; no entitlement is needed on the parent app — iOS routes via the Clip's `parent-application-identifiers`.
 - Confirm your URL has exactly `https://appclip.apple.com` host — anything else is rejected by the validator.
+- Confirm your `AppDelegate` implements `application(_:continue:_:restorationHandler:)` and forwards `appclip.apple.com` URLs explicitly to `NotificationCenter.default.forwardInvocationURL(_:)`. Third-party SDKs (Branch, OneSignal, Firebase Dynamic Links, Klaviyo, etc.) commonly swizzle this method and consume Universal Links before SwiftUI can see them — see [Step 3 → Why we forward explicitly](#why-we-forward-explicitly).
 - If you see `Rejected invocation URL` in the console, that's the validator firing correctly on a non-matching URL.
 
 **Clip appears, but at home screen instead of the expected destination**

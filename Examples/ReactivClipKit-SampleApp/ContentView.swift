@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ReactivClipKit-Sample
 //
-//  Created by Reactiv Technologies Inc. on 2025-04-15.
+//  Created by Reactiv Technologies Inc.
 //
 
 import SwiftUI
@@ -15,13 +15,14 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
                 .font(.system(size: 48))
 
-            Text("ReactivClipKit Sample")
+            Text("Sample Host App")
                 .font(.title)
                 .fontWeight(.bold)
 
-            Text("This is the host application for the ReactivClipKit App Clip demo")
+            Text("This view is shown by the host app. When a Reactiv-owned URL or push notification arrives, ReactivClipHost presents the Reactiv commerce experience as a full-screen cover over this content.")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
+                .padding(.horizontal)
         }
         .padding(30)
     }

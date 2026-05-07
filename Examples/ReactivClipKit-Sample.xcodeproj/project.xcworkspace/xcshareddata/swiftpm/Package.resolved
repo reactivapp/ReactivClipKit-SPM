@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/reactivapp/ReactivClipKit-SPM",
       "state" : {
-        "revision" : "3108aff2d65f723b27a1f3a710fea16d61be2339",
-        "version" : "2.2.2602231"
+        "revision" : "2a4bcb0e2c49b0faa436931bcf5eefa40a1ddbd7",
+        "version" : "2.3.2605041"
       }
     }
   ],

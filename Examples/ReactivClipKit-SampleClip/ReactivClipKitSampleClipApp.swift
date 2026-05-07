@@ -40,16 +40,14 @@ struct ReactivClipKitSampleClipApp: App {
             // try ReactivClipInitializeMultiStore(
             //     stores: stores,
             //     appStoreID: "",
-            //     parentBundleIdentifier: "com.yourapp.bundleid",
-            //     sentrySDK: nil
+            //     parentBundleIdentifier: "com.yourapp.bundleid"
             // )
 
             try ReactivClipInitialize(
                 appIdentifier: "",              // Your app identifier from Reactiv dashboard
                 reactivEventsToken: "",          // Your Reactiv events token
                 appStoreID: "",                  // Your App Store ID
-                parentBundleIdentifier: "com.yourapp.bundleid",
-                sentrySDK: nil                   // Pass SentrySDK.self from the Sentry framework
+                parentBundleIdentifier: "com.yourapp.bundleid"
             )
         } catch {
             print("[ReactivClipKit] Initialization failed: \(error)")

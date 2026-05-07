@@ -85,12 +85,13 @@ Pin the Full App integration via:
 .package(url: "https://github.com/reactivapp/ReactivClipKit-SPM.git", from: "2.3.0")
 ```
 
-Four integration touchpoints:
+Five integration touchpoints:
 
 1. **Initialize** with `"REACTIV_FULL_APP_MODE": true` in `initializationOptions`
 2. **Wrap your root view** in `ReactivClipHost { MyHostHomeScreen() }`
 3. **Forward the APNs device token** in `application(_:didRegisterForRemoteNotificationsWithDeviceToken:)` via `NotificationCenter.default.postDeviceTokenReceived(deviceToken:)`
 4. **Forward push taps** in `userNotificationCenter(_:didReceive:withCompletionHandler:)` via `NotificationCenter.default.handleReactivNotificationTap(response:ifNotReactiv:)`
+5. **Forward `appclip.apple.com` Universal Links** in `application(_:continue:_:restorationHandler:)` via `NotificationCenter.default.forwardInvocationURL(_:)` — required when your app uses third-party SDKs (Branch, OneSignal, Firebase, Klaviyo) that swizzle Universal Link delivery
 
 ```swift
 @main

@@ -530,7 +530,7 @@
 			repositoryURL = "https://github.com/reactivapp/ReactivClipKit-SPM";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.2602101;
+				minimumVersion = 2.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
