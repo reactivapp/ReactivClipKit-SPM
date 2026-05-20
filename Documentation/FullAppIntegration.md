@@ -24,6 +24,14 @@ You ship an existing iOS app (your brand, your codebase). You want to add Reacti
 
 UIKit host integrators: contact Reactiv — we can share the interim pattern.
 
+### Host target capabilities
+
+Your host app target must have the **Push Notifications** capability enabled:
+
+> Xcode → your host target → Signing & Capabilities → **+ Capability → Push Notifications**
+
+This adds `aps-environment` to your target's `.entitlements` file (`development` for debug builds, automatically promoted to `production` for Release / TestFlight / App Store). Without it, `registerForRemoteNotifications()` fails with `no valid "aps-environment" entitlement string found for application` and ReactivClipKit never receives a device token. If your app already sends its own push notifications (Firebase, OneSignal, Klaviyo, etc.), this capability is already present.
+
 ---
 
 ## Install

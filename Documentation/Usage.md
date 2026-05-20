@@ -6,9 +6,21 @@
 
 Before integrating ReactivClipKit, ensure you have:
 
-1. **App Clip Configuration**
+1. **App Clip notification setup** — both are required, both on the App Clip target:
 
-   - Add `NSAppClipRequestEphemeralUserNotification` key set to `true` in your App Clip's Info.plist to enable notification permissions
+   - **Push Notifications capability**: Xcode → your App Clip target → Signing & Capabilities → **+ Capability → Push Notifications**. This adds `aps-environment` to the App Clip's `.entitlements` file. Without it, `registerForRemoteNotifications()` fails with `no valid "aps-environment" entitlement string found for application` and ReactivClipKit never receives a device token.
+
+   - **`NSAppClipRequestEphemeralUserNotification`** key set to `true` in your App Clip's `Info.plist`:
+
+     ```xml
+     <key>NSAppClip</key>
+     <dict>
+       <key>NSAppClipRequestEphemeralUserNotification</key>
+       <true/>
+     </dict>
+     ```
+
+     Without this, iOS silently drops notifications delivered to the App Clip even when the device token is valid. This key grants the ephemeral 8-hour notification permission window — App Clips do not use the standard `requestAuthorization` permission prompt flow.
 
 2. **Custom Fonts (Optional, Experimental)**
    - Add your custom font files (`.ttf` / `.otf`) to the **App Clip target**
@@ -28,6 +40,8 @@ Before integrating ReactivClipKit, ensure you have:
 
 For remote notifications functionality, forwarding the APNs device token to ReactivClipKit is required.
 `ReactivClipKit` does not call `application.registerForRemoteNotifications()` automatically, so your App Clip must call it in `didFinishLaunchingWithOptions`.
+
+> **Do NOT call `UNUserNotificationCenter.current().requestAuthorization(...)` in your App Clip.** App Clips intentionally do not prompt for notification permission — the ephemeral 8-hour window is granted automatically via the `NSAppClipRequestEphemeralUserNotification` Info.plist key and the App Clip card flow. Calling `requestAuthorization` would surface a permission dialog that defeats the App Clip experience design. Call only `registerForRemoteNotifications()`.
 
 ### 1. Create AppDelegate.swift for Notification Handling
 
