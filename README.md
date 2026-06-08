@@ -162,4 +162,6 @@ Need help? → support@reactivapp.com
 
 ## 🔒 License
 
-ReactivClipKit is proprietary software. Contact Reactiv for licensing details.
+ReactivClipKit is proprietary software. Use is governed by the [License Agreement](./LICENSE). Contact Reactiv for licensing details.
+
+**Patent Pending.** ReactivClipKit and its underlying technology are protected by one or more pending patent applications. All rights reserved.
