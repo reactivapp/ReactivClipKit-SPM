@@ -1,0 +1,81 @@
+ReactivClipKit Software License Agreement
+
+Copyright (c) 2026 Reactiv. All rights reserved.
+
+Patent Pending. ReactivClipKit and its underlying technology are protected by
+one or more pending patent applications.
+
+1. DEFINITIONS
+
+   "Software" means the ReactivClipKit Swift package, including all source code,
+   binaries, documentation, samples, and updates provided by Reactiv.
+
+   "Licensee" means the individual or entity that downloads, installs, or
+   otherwise uses the Software.
+
+   "Reactiv" means Reactiv and its affiliates, the owner of the Software.
+
+2. LICENSE GRANT
+
+   Subject to Licensee's compliance with this Agreement, Reactiv grants Licensee
+   a limited, non-exclusive, non-transferable, non-sublicensable, revocable
+   license to install and use the Software solely to integrate with and access
+   Reactiv's hosted services in Licensee's own applications.
+
+3. RESTRICTIONS
+
+   Licensee shall not, and shall not permit any third party to:
+   (a) copy, modify, or create derivative works of the Software except as
+       expressly permitted herein;
+   (b) distribute, sublicense, lease, rent, loan, or otherwise transfer the
+       Software to any third party;
+   (c) reverse engineer, decompile, or disassemble the Software, or attempt to
+       derive its source code, except to the extent applicable law expressly
+       permits despite this limitation;
+   (d) remove, alter, or obscure any proprietary notices (including copyright,
+       patent, or trademark notices) on or in the Software; or
+   (e) use the Software in violation of any applicable law or regulation.
+
+4. OWNERSHIP
+
+   The Software is licensed, not sold. Reactiv retains all right, title, and
+   interest in and to the Software, including all intellectual property rights
+   therein. No rights are granted except as expressly set forth in this
+   Agreement.
+
+5. CONFIDENTIALITY
+
+   The Software and its non-public components constitute the confidential and
+   proprietary information of Reactiv. Licensee shall protect such information
+   using no less than a reasonable degree of care.
+
+6. DISCLAIMER OF WARRANTIES
+
+   THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY
+   KIND. TO THE MAXIMUM EXTENT PERMITTED BY LAW, REACTIV DISCLAIMS ALL
+   WARRANTIES, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+   NON-INFRINGEMENT.
+
+7. LIMITATION OF LIABILITY
+
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, REACTIV SHALL NOT BE LIABLE FOR ANY
+   INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES, OR FOR
+   ANY LOSS OF PROFITS, DATA, OR GOODWILL, ARISING OUT OF OR RELATED TO THIS
+   AGREEMENT OR THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   DAMAGES.
+
+8. TERMINATION
+
+   This Agreement is effective until terminated. It terminates automatically if
+   Licensee breaches any term. Upon termination, Licensee shall cease all use of
+   the Software and destroy all copies in its possession or control.
+
+9. GENERAL
+
+   This Agreement is governed by the laws of the Province of Ontario and the
+   federal laws of Canada applicable therein, without regard to its
+   conflict-of-laws principles. If any provision is held unenforceable, the
+   remaining provisions shall remain in full force and effect.
+
+For licensing inquiries, contact: support@reactiv.ai
