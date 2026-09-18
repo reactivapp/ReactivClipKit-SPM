@@ -67,6 +67,7 @@ See our [FAQ](./FAQ.md) for answers to common questions and troubleshooting tips
 
 ### Official Documentation
 - [Creating an App Clip with Xcode - Apple Developer](https://developer.apple.com/documentation/appclip/creating-an-app-clip-with-xcode)
+- [Associating your App Clip with your website - Apple Developer](https://developer.apple.com/documentation/appclip/associating-your-app-clip-with-your-website)
 
 ### ReactivClipKit Integration
 - [ReactivClipKit Integration Tutorial Video](https://drive.google.com/file/d/1w1gd9TzY35dkec0mh_TIA53DD5iE66Dk/view?usp=sharing)

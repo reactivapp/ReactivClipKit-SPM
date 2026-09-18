@@ -22,7 +22,23 @@ Before integrating ReactivClipKit, ensure you have:
 
      Without this, iOS silently drops notifications delivered to the App Clip even when the device token is valid. This key grants the ephemeral 8-hour notification permission window — App Clips do not use the standard `requestAuthorization` permission prompt flow.
 
-2. **Custom Fonts (Optional, Experimental)**
+2. **Associated Domains (required for store-domain invocations)** on the App Clip target:
+
+   - Xcode → your App Clip target → Signing & Capabilities → **+ Capability → Associated Domains**, then add one entry per store domain using the `appclips:` service prefix:
+
+     ```
+     appclips:shop.example.com
+     ```
+
+   - Your store must serve `https://shop.example.com/.well-known/apple-app-site-association` with the App Clip's app ID (team ID + App Clip bundle ID) in the `appclips` array:
+
+     ```json
+     { "appclips": { "apps": ["ABCDE12345.com.example.app.Clip"] } }
+     ```
+
+   Associated Domains are per target: entries on the parent app do not apply to the App Clip. Without the `appclips:` entry on the App Clip target, App Store Connect shows **"No Domain URL Status data"** for the build and advanced App Clip experiences on your store domain cannot be created. Default experiences via `appclip.apple.com` links do not need this. See [Associating your App Clip with your website](https://developer.apple.com/documentation/appclip/associating-your-app-clip-with-your-website).
+
+3. **Custom Fonts (Optional, Experimental)**
    - Add your custom font files (`.ttf` / `.otf`) to the **App Clip target**
    - Add each font filename to the `UIAppFonts` array in the App Clip's `Info.plist`
    - Configure a font family name for ReactivClipKit in the App Clip's `Info.plist`:

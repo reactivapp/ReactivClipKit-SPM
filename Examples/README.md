@@ -35,8 +35,9 @@ The two targets are paired (host + Clip) so you can see how an embedded ClipKit 
    - `ReactivClipKit-SampleApp/ReactivClipSampleApp.swift` — `appIdentifier`, `reactivEventsToken`, `appStoreID`, `parentBundleIdentifier`
    - `ReactivClipKit-SampleClip/ReactivClipKitSampleClipApp.swift` — same set
 3. Update `ReactivClipKit-SampleApp/ReactivClipKit_Sample.entitlements` — replace `com.yourcompany.app.Clip` in the `associated-appclip-app-identifiers` array with your Clip's actual bundle ID.
-4. In Xcode, set both targets' bundle identifiers and signing team in **Signing & Capabilities**.
-5. Plug in a physical device, select it as the run target, build and run the host scheme.
+4. Update `ReactivClipKit-SampleClip/ReactivSampleClip.entitlements`: replace `shop.example.com` in the `com.apple.developer.associated-domains` array with your store domain (keep the `appclips:` prefix). Your store's `/.well-known/apple-app-site-association` must list the Clip's app ID under `appclips`.
+5. In Xcode, set both targets' bundle identifiers and signing team in **Signing & Capabilities**.
+6. Plug in a physical device, select it as the run target, build and run the host scheme.
 
 To validate Universal Link routing, see `Documentation/FullAppIntegration.md` → "Local testing".
 
@@ -49,6 +50,7 @@ To validate Universal Link routing, see `Documentation/FullAppIntegration.md` �
 | `appStoreID`                         | App Store Connect → App information                          |
 | `parentBundleIdentifier`             | Your parent app's bundle identifier                          |
 | `associated-appclip-app-identifiers` | Your App Clip target's bundle identifier (entitlements file) |
+| `associated-domains`                 | `appclips:<your store domain>` on the App Clip target (entitlements file) |
 
 ## Required ClipKit framework
 
